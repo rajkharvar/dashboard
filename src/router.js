@@ -21,9 +21,17 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
         },
         {
-          path: '/icons',
-          name: 'icons',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
+          path: '/bitcoin',
+          name: 'bitcoin',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import(/* webpackChunkName: "demo" */ './views/Bitcoin.vue')
+        },
+        {
+          path: '/query',
+          name: 'query',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Query.vue')
         },
         {
           path: '/profile',

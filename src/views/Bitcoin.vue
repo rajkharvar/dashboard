@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Card stats -->
             <div class="row">
                 <!-- <div class="col-xl-3 col-lg-6">
@@ -71,7 +71,7 @@
                     <card type="default" header-classes="bg-transparent">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
-                                <h6 class="text-light text-uppercase ls-1 mb-1">Ether price</h6>
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Bitcoin price</h6>
                                 <!-- <h5 class="h3 text-white mb-0">Sales value</h5> -->
                             </div>
                             <div class="col">
@@ -163,16 +163,22 @@
     data() {
       return {
         bigLineChart: {
-          allData: [
-            [0, 1, 2, 3,1],
-            // [0, 20, 5, 25, 10, 30, 15, 40, 40]
-          ],
+          allData: [],
           activeIndex: 0,
           chartData: {
             datasets: [],
             labels: [],
         },
-          extraOptions: chartConfigs.blueChartOptions,
+          extraOptions: {
+        //     scales: {
+        //         xAxes: [{
+        //             type: 'time',
+        //             time: {
+        //                 unit: 'second'
+        //             }
+        //         }]
+        // }
+    }
         }
         // redBarChart: {
         //   chartData: {
@@ -186,8 +192,8 @@
       };
     },
     methods: {
-      async initBigChart(index) {
-        let data = await this.axios.get('http://localhost:3000/job/2')
+      async initBigChart() {
+        let data = await this.axios.get('http://localhost:3000/job/1')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
@@ -196,7 +202,6 @@
         for(let i = 0; i < Object.keys(data.data).length; i++) {
             data2.push((data.data[i].value/100))
             labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
-
         }
         // console.log('d2',data2)
         let chartData = {
@@ -209,11 +214,11 @@
           labels: labels,
         };
         this.bigLineChart.chartData = chartData;
-        this.bigLineChart.activeIndex = index;
+        // this.bigLineChart.activeIndex = index;
       }
     },
     mounted() {
-      this.initBigChart(0);
+      this.initBigChart();
      // this.bigLineChart.allData=[5,5,5]
     }
   };

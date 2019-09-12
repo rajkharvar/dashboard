@@ -1,6 +1,6 @@
 <template>
     <div>
-        <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Card stats -->
             <div class="row">
                 <!-- <div class="col-xl-3 col-lg-6">
@@ -65,16 +65,16 @@
         </base-header>
 
         <!--Charts-->
-        <div class="container-fluid mt--7">
+        <!-- <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col-xl-12 mb-5 mb-xl-0">
                     <card type="default" header-classes="bg-transparent">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
-                                <h6 class="text-light text-uppercase ls-1 mb-1">Ether price</h6>
-                                <!-- <h5 class="h3 text-white mb-0">Sales value</h5> -->
-                            </div>
-                            <div class="col">
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Bitcoin price</h6>
+                                <h5 class="h3 text-white mb-0">Sales value</h5> -->
+                            <!-- </div>
+                            <div class="col"> -->
                                 <!-- <ul class="nav nav-pills justify-content-end">
                                     <li class="nav-item mr-2 mr-md-0">
                                         <a class="nav-link py-2 px-3"
@@ -95,9 +95,9 @@
                                         </a>
                                     </li>
                                 </ul> -->
-                            </div>
-                        </div>
-                        <line-chart
+                            <!-- </div>
+                        </div> -->
+                        <!-- <line-chart
                                 :height="350"
                                 ref="bigChart"
                                 :chart-data="bigLineChart.chartData"
@@ -106,7 +106,7 @@
                         </line-chart>
 
                     </card>
-                </div>
+                </div> -->
 
                 <!-- <div class="col-xl-4">
                     <card header-classes="bg-transparent">
@@ -125,10 +125,20 @@
                         </bar-chart>
                     </card>
                 </div> -->
-            </div>
+            <!-- </div> -->
             <!-- End charts-->
 
             <!--Tables-->
+            <div class="row mt-5">
+                <div class="col-xl-8 mb-5 mb-xl-0">
+                        <form>
+                <h1>Create custom query</h1>
+                <input  placeholder="URL" class="form-control">
+                <input  placeholder="selector" class="form-control">
+                <a class="btn btn-success"> Submit </a>
+
+            </form>
+        </div></div>
             <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <page-visits-table></page-visits-table>
@@ -163,16 +173,22 @@
     data() {
       return {
         bigLineChart: {
-          allData: [
-            [0, 1, 2, 3,1],
-            // [0, 20, 5, 25, 10, 30, 15, 40, 40]
-          ],
+          allData: [],
           activeIndex: 0,
           chartData: {
             datasets: [],
             labels: [],
         },
-          extraOptions: chartConfigs.blueChartOptions,
+          extraOptions: {
+        //     scales: {
+        //         xAxes: [{
+        //             type: 'time',
+        //             time: {
+        //                 unit: 'second'
+        //             }
+        //         }]
+        // }
+    }
         }
         // redBarChart: {
         //   chartData: {
@@ -186,8 +202,8 @@
       };
     },
     methods: {
-      async initBigChart(index) {
-        let data = await this.axios.get('http://localhost:3000/job/2')
+      async initBigChart() {
+        let data = await this.axios.get('http://localhost:3000/job/1')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
@@ -196,7 +212,6 @@
         for(let i = 0; i < Object.keys(data.data).length; i++) {
             data2.push((data.data[i].value/100))
             labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
-
         }
         // console.log('d2',data2)
         let chartData = {
@@ -209,11 +224,11 @@
           labels: labels,
         };
         this.bigLineChart.chartData = chartData;
-        this.bigLineChart.activeIndex = index;
+        // this.bigLineChart.activeIndex = index;
       }
     },
     mounted() {
-      this.initBigChart(0);
+      this.initBigChart();
      // this.bigLineChart.allData=[5,5,5]
     }
   };

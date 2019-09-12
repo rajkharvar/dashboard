@@ -5,17 +5,17 @@
               expand>
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
-                <base-input placeholder="Search"
+                <!-- <base-input placeholder="Search"
                             class="input-group-alternative"
                             alternative=""
                             addon-right-icon="fas fa-search">
-                </base-input>
+                </base-input> -->
             </div>
         </form>
         <ul class="navbar-nav align-items-center d-none d-md-flex">
             <li class="nav-item dropdown">
-                <base-dropdown class="nav-link pr-0">
-                    <div class="media align-items-center" slot="title">
+                <!-- <base-dropdown class="nav-link pr-0">
+                     <div class="media align-items-center" slot="title">
                 <span class="avatar avatar-sm rounded-circle">
                   <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg">
                 </span>
@@ -50,7 +50,7 @@
                             <span>Logout</span>
                         </router-link>
                     </template>
-                </base-dropdown>
+                </base-dropdown> -->
             </li>
         </ul>
     </base-nav>

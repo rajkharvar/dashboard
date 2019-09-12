@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const isProd = process.env.NODE_ENV === "production";
+const webpack = require('webpack')
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   configureWebpack: {
@@ -11,7 +11,7 @@ module.exports = {
     ]
   },
   pwa: {
-    name: 'Vue Argon Dashboard',
+    name: 'Razor Dashboard',
     themeColor: '#172b4d',
     msTileColor: '#172b4d',
     appleMobileWebAppCapable: 'yes',
@@ -21,4 +21,4 @@ module.exports = {
     // Enable CSS source maps.
     sourceMap: process.env.NODE_ENV !== 'production'
   }
-};
+}
