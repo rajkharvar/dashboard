@@ -129,14 +129,14 @@
             <!-- End charts-->
 
             <!--Tables-->
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <page-visits-table></page-visits-table>
                 </div>
                 <div class="col-xl-4">
                     <social-traffic-table></social-traffic-table>
                 </div>
-            </div>
+            </div> -->
             <!--End tables-->
         </div>
 
@@ -150,15 +150,15 @@
 
   // Tables
 
-  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  import PageVisitsTable from './Dashboard/PageVisitsTable';
+  // import SocialTrafficTable from './Dashboard/SocialTrafficTable';
+  // import PageVisitsTable from './Dashboard/PageVisitsTable';
 
   export default {
     components: {
       LineChart,
       // BarChart,
-      PageVisitsTable,
-      SocialTrafficTable,
+      // PageVisitsTable,
+      // SocialTrafficTable,
     },
     data() {
       return {
@@ -187,7 +187,7 @@
     },
     methods: {
       async initBigChart(index) {
-        let data = await this.axios.get('http://localhost:3000/job/2')
+        let data = await this.axios.get('http://localhost:3000/job/1')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)

@@ -131,50 +131,66 @@
             <!--Tables-->
             <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
-                        <form>
-                <h1>Create custom query</h1>
-                <input  placeholder="URL" class="form-control">
-                <input  placeholder="selector" class="form-control">
-                <a class="btn btn-success"> Submit </a>
+                    <!-- (url, selector, repeat, eth, account) -->
+                <!-- <form  @submit="formSubmit"> -->
+                    <h1>Create custom query</h1>
+                    Example: Use the following URL to fetch price of US stocks from NASDAQ. Substitute AAPL with symbol of any stock. <br/>
+                    https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=E1BN9Y09VQ32BQ00<br/>
+                    Use selector: Global Quote["05. price"]<br/>
+                    <input  v-model = "url" placeholder="JSON URL" class="form-control" />
 
-            </form>
+                    <input  v-model= "selector" placeholder="JSON selector" class="form-control" />
+                    Repeat: <input type="checkbox"   v-model="repeat" placeholder="selector" class="form-control" />
+                    <input  v-model='eth' placeholder="fees in ether" class="form-control" />
+                    <a class="btn btn-success" @click = "createJob"> Submit </a>
+                <!-- </form> -->
         </div></div>
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <page-visits-table></page-visits-table>
                 </div>
                 <div class="col-xl-4">
                     <social-traffic-table></social-traffic-table>
                 </div>
-            </div>
+            </div> -->
             <!--End tables-->
-        </div>
+        <!-- </div> -->
 
     </div>
 </template>
 <script>
+
+import { createJob } from '@/utils/commons'
+
   // Charts
-  import * as chartConfigs from '@/components/Charts/config';
-  import LineChart from '@/components/Charts/LineChart';
+  // import * as chartConfigs from '@/components/Charts/config';
+  // import LineChart from '@/components/Charts/LineChart';
   // import BarChart from '@/components/Charts/BarChart';
 
   // Tables
 
-  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  import PageVisitsTable from './Dashboard/PageVisitsTable';
+  // import SocialTrafficTable from './Dashboard/SocialTrafficTable';
+  // import PageVisitsTable from './Dashboard/PageVisitsTable';
 
   export default {
     components: {
-      LineChart,
+      // LineChart,
       // BarChart,
-      PageVisitsTable,
-      SocialTrafficTable,
+      // PageVisitsTable,
+      // SocialTrafficTable,
     },
     data() {
       return {
+          url: null,
+          selector: null,
+          eth: null,
+          account: null,
+          repeat: false,
         bigLineChart: {
           allData: [],
           activeIndex: 0,
+
+
           chartData: {
             datasets: [],
             labels: [],
@@ -202,6 +218,10 @@
       };
     },
     methods: {
+         async createJob () {
+          await createJob(this.url, this.selector, this.repeat, this.eth)
+          // this.refresh()
+      },
       async initBigChart() {
         let data = await this.axios.get('http://localhost:3000/job/1')
         // console.log('d',data)

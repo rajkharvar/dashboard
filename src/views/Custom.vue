@@ -1,8 +1,15 @@
 <template>
+
     <div>
-        <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Card stats -->
             <div class="row">
+                    <select v-model="selected"  @change="initBigChart(selected)">
+              <option v-for="job in jobs" v-bind:value="job.id">
+                {{ job.url }}
+              </option>
+            </select>
+            <!-- <span>Selected: {{ selected }}</span> -->
                 <!-- <div class="col-xl-3 col-lg-6">
                     <stats-card title="Total traffic"
                                 type="gradient-red"
@@ -71,7 +78,7 @@
                     <card type="default" header-classes="bg-transparent">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
-                                <h6 class="text-light text-uppercase ls-1 mb-1">Bitcoin price</h6>
+                                <h6 class="text-light text-uppercase ls-1 mb-1">Data</h6>
                                 <!-- <h5 class="h3 text-white mb-0">Sales value</h5> -->
                             </div>
                             <div class="col">
@@ -162,23 +169,19 @@
     },
     data() {
       return {
+          jobs: [],
+          selected: null,
         bigLineChart: {
-          allData: [],
+          allData: [
+            [0, 1, 2, 3,1],
+            // [0, 20, 5, 25, 10, 30, 15, 40, 40]
+          ],
           activeIndex: 0,
           chartData: {
             datasets: [],
             labels: [],
         },
-          extraOptions: {
-        //     scales: {
-        //         xAxes: [{
-        //             type: 'time',
-        //             time: {
-        //                 unit: 'second'
-        //             }
-        //         }]
-        // }
-    }
+          extraOptions: chartConfigs.blueChartOptions,
         }
         // redBarChart: {
         //   chartData: {
@@ -192,8 +195,16 @@
       };
     },
     methods: {
-      async initBigChart() {
-        let data = await this.axios.get('http://localhost:3000/job/2')
+        async getJobs() {
+            let data = await this.axios.get('http://localhost:3000/jobs')
+            for(let i = 0; i<data.data.message.length; i++) {
+                this.jobs.push({'url':data.data.message[i].url,'id':data.data.message[i].id})
+            }
+            // console.log(this.jobs)
+
+        },
+      async initBigChart(jobId) {
+        let data = await this.axios.get('http://localhost:3000/job/'+jobId)
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
@@ -202,6 +213,7 @@
         for(let i = 0; i < Object.keys(data.data).length; i++) {
             data2.push((data.data[i].value/100))
             labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
+
         }
         // console.log('d2',data2)
         let chartData = {
@@ -218,7 +230,8 @@
       }
     },
     mounted() {
-      this.initBigChart();
+      // this.initBigChart(0);
+      this. getJobs()
      // this.bigLineChart.allData=[5,5,5]
     }
   };
