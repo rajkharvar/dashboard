@@ -196,7 +196,7 @@
     },
     methods: {
         async getJobs() {
-            let data = await this.axios.get('http://localhost:3000/jobs')
+            let data = await this.axios.get('http://35.188.201.171:3000/jobs')
             for(let i = 0; i<data.data.message.length; i++) {
                 this.jobs.push({'url':data.data.message[i].url,'id':data.data.message[i].id})
             }
@@ -204,7 +204,7 @@
 
         },
       async initBigChart(jobId) {
-        let data = await this.axios.get('http://localhost:3000/job/'+jobId)
+        let data = await this.axios.get('http://35.188.201.171:3000/job/'+jobId)
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)

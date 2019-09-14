@@ -193,7 +193,7 @@
     },
     methods: {
       async initBigChart() {
-        let data = await this.axios.get('http://localhost:3000/job/2')
+        let data = await this.axios.get('http://35.188.201.171:3000/job/2')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
