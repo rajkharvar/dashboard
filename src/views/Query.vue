@@ -223,7 +223,7 @@ import { createJob } from '@/utils/commons'
           // this.refresh()
       },
       async initBigChart() {
-        let data = await this.axios.get('http://35.188.201.171:3000/job/1')
+        let data = await this.axios.get('https://api.razor.network/job/1')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
