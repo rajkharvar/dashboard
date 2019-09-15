@@ -134,9 +134,13 @@
                     <!-- (url, selector, repeat, eth, account) -->
                 <!-- <form  @submit="formSubmit"> -->
                     <h1>Create custom query</h1>
+                    Note: Use ethereum compatible browser and set network to rinkeby. Make sure you have some eth for tx. <br/>
                     Example: Use the following URL to fetch price of US stocks from NASDAQ. Substitute AAPL with symbol of any stock. <br/>
                     https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=E1BN9Y09VQ32BQ00<br/>
                     Use selector: Global Quote["05. price"]<br/>
+                    check "explore custom queries" page after a few minutes to see the result.<br/>
+                    another example: https://api.gemini.com/v1/pubticker/ltcusd selector: last <br/>
+
                     <input  v-model = "url" placeholder="JSON URL" class="form-control" />
 
                     <input  v-model= "selector" placeholder="JSON selector" class="form-control" />
