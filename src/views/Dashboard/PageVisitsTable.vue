@@ -6,27 +6,40 @@
           <h3 class="mb-0">Recent Transactions</h3>
         </div>
         <div class="col text-right">
-          <a href="#!" class="btn btn-sm btn-primary">Explore on Etherscan</a>
+          <!-- <a href="#!" class="btn btn-sm btn-primary">Explore on Etherscan</a> -->
         </div>
       </div>
     </div>
+    <base-pagination
+      v-model="currentPage"
+      :pageCount="pageCount"
+      :perPage="perPage"
+      aria-controls="my-table"
+    ></base-pagination>
+    <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
 
     <div class="table-responsive">
+
       <base-table thead-classes="thead-light"
-                  :data="tableData">
+                  :data="dataPage"
+                  :per-page="perPage"
+:current-page="currentPage">
         <template slot="columns">
-          <th>Address</th>
+          <th>Epoch</th>
+          <th>Staker</th>
           <th>Action</th>
           <th>Value</th>
-          <th>Timestamp</th>
         </template>
 
         <template slot-scope="{row}">
           <th scope="row">
-            {{row.address}}
+            {{row.epoch}}
           </th>
+          <td scope="row">
+            {{row.staker}}
+        </td>
           <td>
-            {{row.action}}
+            <span class="badge badge-primary">{{row.action}} </span>
           </td>
           <td>
             {{row.value}}
@@ -47,20 +60,26 @@
 <script>
   export default {
     name: 'page-visits-table',
+    props: ['tableData'],
     data() {
-      return {
-        tableData: [
-          {
-            address: '0xdeadbeef',
-            action: 'vote',
-            value: '340',
-            timeStamp: '090909',
-            // bounceRateDirection: 'up'
-          }
-        ]
+      return {  perPage: 10,
+        currentPage: 1,
+        data: this.tableData
       }
-    }
+  },
+  computed: {
+  rows() {
+    return this.tableData.length
+},
+  pageCount() {
+    return Math.floor(this.tableData.length / this.perPage)
+},
+  dataPage() {
+      return this.tableData.slice(this.perPage*this.currentPage,this.perPage*(this.currentPage+1))
   }
+}
+}
+
 </script>
 <style>
 </style>

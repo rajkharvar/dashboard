@@ -13,10 +13,11 @@
 
     <div class="table-responsive">
       <base-table thead-classes="thead-light"
-                  :data="tableData">
+                  :data="data">
         <template slot="columns">
           <th>Staker</th>
           <th>Value</th>
+          <th>Stake</th>
           <th>Weight</th>
         </template>
 
@@ -26,6 +27,9 @@
           </th>
           <td>
             {{row.value}}
+          </td>
+          <td>
+            {{row.stake}}
           </td>
           <td>
             <div class="d-flex align-items-center">
@@ -47,16 +51,20 @@
 <script>
   export default {
     name: 'social-traffic-table',
+    props: ['tableData'],
+
     data() {
       return {
-        tableData: [
-          {
-            staker: 'Facebook',
-            value: '1,480',
-            weight: 60,
-            // progressType: 'gradient-danger',
-          }
-        ]
+        data: this.tableData
+        // [
+        //   {
+        //     staker: 'Facebook',
+        //     value: '1,480',
+        //     weight: 60,
+        //     // progressType: 'gradient-danger',
+        //   }
+        // ]
+
       }
     }
 

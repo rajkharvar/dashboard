@@ -3,73 +3,80 @@
     <div>
         <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Card stats -->
+            <div class="col-xl-3 col-lg-6">
+
             <div class="row">
-                    <select v-model="selected"  @change="initBigChart(selected)">
+                    <h1 style="color:white">Select datafeed:</h1> <select v-model="selected"  @change="init(selected)">
               <option v-for="job in jobs" v-bind:value="job.id">
                 {{ job.url }}
               </option>
             </select>
-            <!-- <span>Selected: {{ selected }}</span> -->
-                <!-- <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
-                                type="gradient-red"
-                                sub-title="350,897"
-                                icon="ni ni-active-40"
-                                class="mb-4 mb-xl-0"
-                    >
+        </div>
+        </div>
+<br/>
+            <!-- <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8"> -->
+                <!-- Card stats -->
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6">
+                        <stats-card title="Last Datapoint"
+                                    type="gradient-red"
+                                    :sub-title="lastDataPoint"
+                                    icon="ni ni-atom"
+                                    class="mb-4 mb-xl-0"
+                        >
 
-                        <template slot="footer">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
+                            <!-- <template slot="footer">
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                <span class="text-nowrap">Since last datapoint</span>
+                            </template> -->
+                        </stats-card>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <stats-card title="Total Stakers"
+                                    type="gradient-orange"
+                                    :sub-title="numStakers"
+                                    icon="ni ni-chart-pie-35"
+                                    class="mb-4 mb-xl-0"
+                        >
+
+                            <!-- <template slot="footer">
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 12.18%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </template> -->
+                        </stats-card>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <stats-card title="Total Stake"
+                                    type="gradient-green"
+                                    :sub-title="totalStake"
+                                    icon="ni ni-money-coins"
+                                    class="mb-4 mb-xl-0"
+                        >
+
+                            <!-- <template slot="footer">
+                                <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i> 5.72%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </template> -->
+                        </stats-card>
+
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <stats-card title="Epoch"
+                                    type="gradient-info"
+                                    :sub-title="epoch"
+                                    icon="ni ni-chart-bar-32"
+                                    class="mb-4 mb-xl-0"
+                        >
+
+                            <!-- <template slot="footer">
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 54.8%</span>
+                                <span class="text-nowrap">Since last month</span>
+                            </template> -->
+                        </stats-card>
+                    </div>
+
                 </div>
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
-                                type="gradient-orange"
-                                sub-title="2,356"
-                                icon="ni ni-chart-pie-35"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 12.18%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Sales"
-                                type="gradient-green"
-                                sub-title="924"
-                                icon="ni ni-money-coins"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i> 5.72%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Performance"
-                                type="gradient-info"
-                                sub-title="49,65%"
-                                icon="ni ni-chart-bar-32"
-                                class="mb-4 mb-xl-0"
-                    >
-
-                        <template slot="footer">
-                            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 54.8%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
-                    </stats-card>
-                </div>
-            -->
-            </div>
-        </base-header>
+            </base-header>
 
         <!--Charts-->
         <div class="container-fluid mt--7">
@@ -136,14 +143,17 @@
             <!-- End charts-->
 
             <!--Tables-->
-            <!-- <div class="row mt-5">
-                <div class="col-xl-8 mb-5 mb-xl-0">
-                    <page-visits-table></page-visits-table>
+            <div class="row mt-5">
+
+                <div class="col-xl-12">
+                    <social-traffic-table :tableData="SocialTrafficTable.tableData"></social-traffic-table>
                 </div>
-                <div class="col-xl-4">
-                    <social-traffic-table></social-traffic-table>
+            </div>
+            <div class="row mt-5">
+                <div class="col-xl-12 mb-5 mb-xl-0">
+                    <page-visits-table :tableData="PageVisitsTable.tableData"></page-visits-table>
                 </div>
-            </div> -->
+            </div>
             <!--End tables-->
         </div>
 
@@ -157,18 +167,29 @@
 
   // Tables
 
-  // import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  // import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
+  import PageVisitsTable from './Dashboard/PageVisitsTable';
 
   export default {
     components: {
       LineChart,
       // BarChart,
-      // PageVisitsTable,
-      // SocialTrafficTable,
+      PageVisitsTable,
+      SocialTrafficTable,
     },
     data() {
       return {
+          lastDataPoint:'',
+          numStakers:'',
+          totalStake:'',
+          epoch:'',
+
+        SocialTrafficTable: {
+            tableData: []
+        },
+        PageVisitsTable: {
+            tableData: []
+        },
           jobs: [],
           selected: null,
         bigLineChart: {
@@ -213,8 +234,9 @@
         for(let i = 0; i < Object.keys(data.data).length; i++) {
             data2.push((data.data[i].value/100))
             labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
-
         }
+        this.lastDataPoint = String(data2[data2.length-1])
+
         // console.log('d2',data2)
         let chartData = {
           datasets: [
@@ -227,11 +249,57 @@
         };
         this.bigLineChart.chartData = chartData;
         // this.bigLineChart.activeIndex = index;
-      }
+    },
+    async initTables(jobId) {
+        // console.log('initing')
+        let data = await this.axios.get('https://api.razor.network/votes/'+jobId)
+        // console.log(data.data)
+        let totalStake = 0
+        for(let i = 0; i < (data.data.message).length; i++) {
+            // this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker, value: Number(data.data.message[i].value), weight: Number(data.data.message[i].weight)})
+            // console.log('weight', Number(data.data.message[i].weight))
+            totalStake+=Number(data.data.message[i].weight)
+        }
+        // let tData = []
+        // this.SocialTrafficTable.tableData=[]
+        this.SocialTrafficTable.tableData=this.SocialTrafficTable.tableData.splice(0,this.SocialTrafficTable.tableData.length)
+
+        for(let i = 0; i < (data.data.message).length; i++) {
+            this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
+                value: Number(data.data.message[i].value),
+                stake: Number(data.data.message[i].weight),
+                weight: Number(data.data.message[i].weight)*100/totalStake})
+        }
+        // this.SocialTrafficTable.tableData = tData.slice()
+        this.numStakers = String((data.data.message).length)
+        this.totalStake = String(totalStake)
+        let data2 = await this.axios.get('https://api.razor.network/voteEvents/'+jobId)
+        // console.log(data2.data.message)
+        // let tData2 = []
+        this.PageVisitsTable.tableData=this.PageVisitsTable.tableData.splice(0,this.PageVisitsTable.tableData.length)
+        for(let i = (data2.data.message).length-1; i>=0; i--) {
+            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value)})
+        }
+        // this.PageVisitsTable.tableData=tData2.slice()
+    },
+    async initCards() {
+        // console.log('initing')
+        let data = await this.axios.get('https://api.razor.network/epoch')
+        // console.log(data.message)
+        this.epoch = String(data.data.message)
+
+
+    },
+    async init(jobId)
+    {
+        await this.initCards()
+        await this.initBigChart(jobId)
+        await this.initTables(jobId)
+    }
     },
     mounted() {
       // this.initBigChart(0);
-      this. getJobs()
+      this.getJobs()
      // this.bigLineChart.allData=[5,5,5]
     }
   };

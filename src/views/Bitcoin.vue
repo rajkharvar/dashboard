@@ -1,66 +1,66 @@
 <template>
     <div>
-        <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Card stats -->
             <div class="row">
-                <!-- <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
+                <div class="col-xl-3 col-lg-6">
+                    <stats-card title="Last Datapoint"
                                 type="gradient-red"
-                                sub-title="350,897"
-                                icon="ni ni-active-40"
+                                :sub-title="lastDataPoint"
+                                icon="ni ni-atom"
                                 class="mb-4 mb-xl-0"
                     >
 
-                        <template slot="footer">
+                        <!-- <template slot="footer">
                             <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                            <span class="text-nowrap">Since last month</span>
-                        </template>
+                            <span class="text-nowrap">Since last datapoint</span>
+                        </template> -->
                     </stats-card>
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
+                    <stats-card title="Total Stakers"
                                 type="gradient-orange"
-                                sub-title="2,356"
+                                :sub-title="numStakers"
                                 icon="ni ni-chart-pie-35"
                                 class="mb-4 mb-xl-0"
                     >
 
-                        <template slot="footer">
+                        <!-- <template slot="footer">
                             <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 12.18%</span>
                             <span class="text-nowrap">Since last month</span>
-                        </template>
+                        </template> -->
                     </stats-card>
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Sales"
+                    <stats-card title="Total Stake"
                                 type="gradient-green"
-                                sub-title="924"
+                                :sub-title="totalStake"
                                 icon="ni ni-money-coins"
                                 class="mb-4 mb-xl-0"
                     >
 
-                        <template slot="footer">
+                        <!-- <template slot="footer">
                             <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i> 5.72%</span>
                             <span class="text-nowrap">Since last month</span>
-                        </template>
+                        </template> -->
                     </stats-card>
 
                 </div>
                 <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Performance"
+                    <stats-card title="Epoch"
                                 type="gradient-info"
-                                sub-title="49,65%"
+                                :sub-title="epoch"
                                 icon="ni ni-chart-bar-32"
                                 class="mb-4 mb-xl-0"
                     >
 
-                        <template slot="footer">
+                        <!-- <template slot="footer">
                             <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 54.8%</span>
                             <span class="text-nowrap">Since last month</span>
-                        </template>
+                        </template> -->
                     </stats-card>
                 </div>
-            -->
+
             </div>
         </base-header>
 
@@ -129,14 +129,17 @@
             <!-- End charts-->
 
             <!--Tables-->
-            <!-- <div class="row mt-5">
-                <div class="col-xl-8 mb-5 mb-xl-0">
-                    <page-visits-table></page-visits-table>
+            <div class="row mt-5">
+
+                <div class="col-xl-12">
+                    <social-traffic-table :tableData="SocialTrafficTable.tableData"></social-traffic-table>
                 </div>
-                <div class="col-xl-4">
-                    <social-traffic-table></social-traffic-table>
+            </div>
+            <div class="row mt-5">
+                <div class="col-xl-12 mb-5 mb-xl-0">
+                    <page-visits-table :tableData="PageVisitsTable.tableData"></page-visits-table>
                 </div>
-            </div> -->
+            </div>
             <!--End tables-->
         </div>
 
@@ -150,18 +153,29 @@
 
   // Tables
 
-  // import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  // import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
+  import PageVisitsTable from './Dashboard/PageVisitsTable';
 
   export default {
     components: {
       LineChart,
       // BarChart,
-      // PageVisitsTable,
-      // SocialTrafficTable,
+      PageVisitsTable,
+      SocialTrafficTable,
     },
     data() {
       return {
+          lastDataPoint:'',
+          numStakers:'',
+          totalStake:'',
+          epoch:'',
+
+        SocialTrafficTable: {
+            tableData: []
+        },
+        PageVisitsTable: {
+            tableData: []
+        },
         bigLineChart: {
           allData: [],
           activeIndex: 0,
@@ -203,6 +217,8 @@
             data2.push((data.data[i].value/100))
             labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
         }
+        this.lastDataPoint = String(data2[data2.length-1])
+
         // console.log('d2',data2)
         let chartData = {
           datasets: [
@@ -215,10 +231,46 @@
         };
         this.bigLineChart.chartData = chartData;
         // this.bigLineChart.activeIndex = index;
-      }
+    },
+    async initTables() {
+        // console.log('initing')
+        let data = await this.axios.get('https://api.razor.network/votes/2')
+        // console.log(data.data)
+        let totalStake = 0
+        for(let i = 0; i < (data.data.message).length; i++) {
+            // this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker, value: Number(data.data.message[i].value), weight: Number(data.data.message[i].weight)})
+            // console.log('weight', Number(data.data.message[i].weight))
+            totalStake+=Number(data.data.message[i].weight)
+        }
+        for(let i = 0; i < (data.data.message).length; i++) {
+            this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
+                value: Number(data.data.message[i].value),
+                stake: Number(data.data.message[i].weight),
+                weight: Number(data.data.message[i].weight)*100/totalStake})
+            // console.log('weight', Number(data.data.message[i].weight))
+            // totalStake+=Number(data.data.message[i].weight)
+        }
+        this.numStakers = String((data.data.message).length)
+        this.totalStake = String(totalStake)
+        let data2 = await this.axios.get('https://api.razor.network/voteEvents/2')
+        // console.log(data2.data.message)
+        for(let i = (data2.data.message).length-1; i>=0; i--) {
+            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value)})
+        }
+    },
+    async initCards() {
+        // console.log('initing')
+        let data = await this.axios.get('https://api.razor.network/epoch')
+        // console.log(data.message)
+        this.epoch = String(data.data.message)
+
+
+    }
     },
     mounted() {
-      this.initBigChart();
+      this.initBigChart(0);
+      this.initTables();
+      this.initCards();
      // this.bigLineChart.allData=[5,5,5]
     }
   };
