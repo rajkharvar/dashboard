@@ -22,6 +22,11 @@ import './registerServiceWorker'
 import ArgonDashboard from './plugins/argon-dashboard'
 import axios from 'axios'
 import moment from 'moment'
+import VueAnalytics from 'vue-analytics'
+
+Vue.use(VueAnalytics, {
+  id: 'UA-143423314-1'
+})
 
 // import Plugin from './plugins/Plugin'
 
