@@ -15,6 +15,7 @@
       :pageCount="pageCount"
       :perPage="perPage"
       aria-controls="my-table"
+      class="px-3"
     ></base-pagination>
     <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
 
@@ -62,9 +63,9 @@
     name: 'page-visits-table',
     props: ['tableData'],
     data() {
-      return {  perPage: 10,
-        currentPage: 1,
-        data: this.tableData
+      return {
+        perPage: 10,
+        currentPage: 1
       }
   },
   computed: {

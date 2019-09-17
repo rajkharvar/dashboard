@@ -1,307 +1,195 @@
 <template>
-
-    <div>
-        <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
-            <!-- Card stats -->
-            <div class="col-xl-3 col-lg-6">
-
-            <div class="row">
-                    <h1 style="color:white">Select datafeed:</h1> <select v-model="selected"  @change="init(selected)">
-              <option v-for="job in jobs" v-bind:value="job.id">
-                {{ job.url }}
-              </option>
-            </select>
-        </div>
-        </div>
-<br/>
-            <!-- <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8"> -->
-                <!-- Card stats -->
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6">
-                        <stats-card title="Last Datapoint"
-                                    type="gradient-red"
-                                    :sub-title="lastDataPoint"
-                                    icon="ni ni-atom"
-                                    class="mb-4 mb-xl-0"
-                        >
-
-                            <!-- <template slot="footer">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span class="text-nowrap">Since last datapoint</span>
-                            </template> -->
-                        </stats-card>
-                    </div>
-                    <div class="col-xl-3 col-lg-6">
-                        <stats-card title="Total Stakers"
-                                    type="gradient-orange"
-                                    :sub-title="numStakers"
-                                    icon="ni ni-chart-pie-35"
-                                    class="mb-4 mb-xl-0"
-                        >
-
-                            <!-- <template slot="footer">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 12.18%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </template> -->
-                        </stats-card>
-                    </div>
-                    <div class="col-xl-3 col-lg-6">
-                        <stats-card title="Total Stake"
-                                    type="gradient-green"
-                                    :sub-title="totalStake"
-                                    icon="ni ni-money-coins"
-                                    class="mb-4 mb-xl-0"
-                        >
-
-                            <!-- <template slot="footer">
-                                <span class="text-danger mr-2"><i class="fa fa-arrow-down"></i> 5.72%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </template> -->
-                        </stats-card>
-
-                    </div>
-                    <div class="col-xl-3 col-lg-6">
-                        <stats-card title="Epoch"
-                                    type="gradient-info"
-                                    :sub-title="epoch"
-                                    icon="ni ni-chart-bar-32"
-                                    class="mb-4 mb-xl-0"
-                        >
-
-                            <!-- <template slot="footer">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 54.8%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </template> -->
-                        </stats-card>
-                    </div>
-
-                </div>
-            </base-header>
-
-        <!--Charts-->
-        <div class="container-fluid mt--7">
-            <div class="row">
-                <div class="col-xl-12 mb-5 mb-xl-0">
-                    <card type="default" header-classes="bg-transparent">
-                        <div slot="header" class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-light text-uppercase ls-1 mb-1">Data</h6>
-                                <!-- <h5 class="h3 text-white mb-0">Sales value</h5> -->
-                            </div>
-                            <div class="col">
-                                <!-- <ul class="nav nav-pills justify-content-end">
-                                    <li class="nav-item mr-2 mr-md-0">
-                                        <a class="nav-link py-2 px-3"
-                                           href="#"
-                                           :class="{active: bigLineChart.activeIndex === 0}"
-                                           @click.prevent="initBigChart(0)">
-                                            <span class="d-none d-md-block">Month</span>
-                                            <span class="d-md-none">M</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link py-2 px-3"
-                                           href="#"
-                                           :class="{active: bigLineChart.activeIndex === 1}"
-                                           @click.prevent="initBigChart(1)">
-                                            <span class="d-none d-md-block">Week</span>
-                                            <span class="d-md-none">W</span>
-                                        </a>
-                                    </li>
-                                </ul> -->
-                            </div>
-                        </div>
-                        <line-chart
-                                :height="350"
-                                ref="bigChart"
-                                :chart-data="bigLineChart.chartData"
-                                :extra-options="bigLineChart.extraOptions"
-                        >
-                        </line-chart>
-
-                    </card>
-                </div>
-
-                <!-- <div class="col-xl-4">
-                    <card header-classes="bg-transparent">
-                        <div slot="header" class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                                <h5 class="h3 mb-0">Total orders</h5>
-                            </div>
-                        </div>
-
-                        <bar-chart
-                                :height="350"
-                                ref="barChart"
-                                :chart-data="redBarChart.chartData"
-                        >
-                        </bar-chart>
-                    </card>
-                </div> -->
-            </div>
-            <!-- End charts-->
-
-            <!--Tables-->
-            <div class="row mt-5">
-
-                <div class="col-xl-12">
-                    <social-traffic-table :tableData="SocialTrafficTable.tableData"></social-traffic-table>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-xl-12 mb-5 mb-xl-0">
-                    <page-visits-table :tableData="PageVisitsTable.tableData"></page-visits-table>
-                </div>
-            </div>
-            <!--End tables-->
-        </div>
-
+<div>
+  <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
+    <div class="col-xl-3 col-lg-6 mb-4">
+      <div class="row">
+        <h1 style="color:white">Datafeed</h1>
+        <select v-model="selected" @change="init(selected)" class="form-control">
+          <option disabled selected :value="null">Select a datafeed</option>
+          <option v-for="job in jobs" :value="job.id" :key="job.id">{{ job.url }}</option>
+        </select>
+      </div>
     </div>
+
+    <div class="row" v-if="selected">
+      <div class="col-xl-3 col-lg-6">
+        <stats-card title="Last Datapoint" type="gradient-red" :sub-title="lastDataPoint" icon="ni ni-atom" class="mb-4 mb-xl-0" />
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <stats-card title="Total Stakers" type="gradient-orange" :sub-title="numStakers" icon="ni ni-chart-pie-35" class="mb-4 mb-xl-0" />
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <stats-card title="Total Stake" type="gradient-green" :sub-title="totalStake" icon="ni ni-money-coins" class="mb-4 mb-xl-0" />
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <stats-card title="Epoch" type="gradient-info" :sub-title="epoch" icon="ni ni-chart-bar-32" class="mb-4 mb-xl-0" />
+      </div>
+    </div>
+  </base-header>
+
+  <div class="container-fluid mt-7" v-if="selected">
+    <div class="row">
+      <div class="col-xl-12 mb-5 mb-xl-0">
+        <card type="default" header-classes="bg-transparent">
+          <div slot="header" class="row align-items-center">
+            <div class="col">
+              <h6 class="text-light text-uppercase ls-1 mb-1">Data</h6>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <line-chart :height="350" ref="bigChart" :chart-data="bigLineChart.chartData" :extra-options="bigLineChart.extraOptions">
+          </line-chart>
+
+        </card>
+      </div>
+    </div>
+    <!-- End charts-->
+
+    <!--Tables-->
+    <div class="row mt-5" v-if="stakers.length > 0">
+      <div class="col-xl-12">
+        <social-traffic-table :tableData="stakers"></social-traffic-table>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="transactions.length > 0">
+      <div class="col-xl-12 mb-5 mb-xl-0">
+        <page-visits-table :tableData="transactions"></page-visits-table>
+      </div>
+    </div>
+  </div>
+
+</div>
 </template>
 <script>
-  // Charts
-  import * as chartConfigs from '@/components/Charts/config';
-  import LineChart from '@/components/Charts/LineChart';
-  // import BarChart from '@/components/Charts/BarChart';
+// Charts
+import * as chartConfigs from '@/components/Charts/config';
+import LineChart from '@/components/Charts/LineChart';
+// import BarChart from '@/components/Charts/BarChart';
 
-  // Tables
+// Tables
 
-  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  import PageVisitsTable from './Dashboard/PageVisitsTable';
+import SocialTrafficTable from './Dashboard/SocialTrafficTable';
+import PageVisitsTable from './Dashboard/PageVisitsTable';
 
-  export default {
-    components: {
-      LineChart,
-      // BarChart,
-      PageVisitsTable,
-      SocialTrafficTable,
+export default {
+  components: {
+    LineChart,
+    // BarChart,
+    PageVisitsTable,
+    SocialTrafficTable,
+  },
+  data() {
+    return {
+      lastDataPoint: '',
+      numStakers: '',
+      totalStake: '',
+      epoch: '',
+
+      stakers: [],
+      transactions: [],
+      jobs: [],
+      selected: null,
+      bigLineChart: {
+        allData: [
+          [0, 1, 2, 3, 1],
+          // [0, 20, 5, 25, 10, 30, 15, 40, 40]
+        ],
+        activeIndex: 0,
+        chartData: {
+          datasets: [],
+          labels: [],
+        },
+        extraOptions: chartConfigs.blueChartOptions,
+      }
+    }
+  },
+  methods: {
+    async getJobs() {
+      let data = await this.axios.get('https://api.razor.network/jobs')
+      for (let i = 0; i < data.data.message.length; i++) {
+        this.jobs.push({
+          'url': data.data.message[i].url,
+          'id': data.data.message[i].id
+        })
+      }
+      // console.log(this.jobs)
+
     },
-    data() {
-      return {
-          lastDataPoint:'',
-          numStakers:'',
-          totalStake:'',
-          epoch:'',
+    async initBigChart(jobId) {
+      let data = await this.axios.get('https://api.razor.network/job/' + jobId)
+      // console.log('d',data)
+      // console.log('d',data.data)
+      // console.log('length',Object.keys(data.data).length)
+      let data2 = []
+      let labels = []
+      for (let i = 0; i < Object.keys(data.data).length; i++) {
+        data2.push((data.data[i].value / 100))
+        labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
+      }
+      this.lastDataPoint = String(data2[data2.length - 1])
 
-        SocialTrafficTable: {
-            tableData: []
-        },
-        PageVisitsTable: {
-            tableData: []
-        },
-          jobs: [],
-          selected: null,
-        bigLineChart: {
-          allData: [
-            [0, 1, 2, 3,1],
-            // [0, 20, 5, 25, 10, 30, 15, 40, 40]
-          ],
-          activeIndex: 0,
-          chartData: {
-            datasets: [],
-            labels: [],
-        },
-          extraOptions: chartConfigs.blueChartOptions,
-        }
-        // redBarChart: {
-        //   chartData: {
-        //     labels: ['gog', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        //     datasets: [{
-        //       label: 'Sales',
-        //       data: [25, 20, 30, 22, 17, 29]
-        //     }]
-        //   }
-        // }
+      // console.log('d2',data2)
+      let chartData = {
+        datasets: [{
+          label: 'Price',
+          data: data2
+        }],
+        labels: labels,
       };
+      this.bigLineChart.chartData = chartData;
+      // this.bigLineChart.activeIndex = index;
     },
-    methods: {
-        async getJobs() {
-            let data = await this.axios.get('https://api.razor.network/jobs')
-            for(let i = 0; i<data.data.message.length; i++) {
-                this.jobs.push({'url':data.data.message[i].url,'id':data.data.message[i].id})
-            }
-            // console.log(this.jobs)
+    async initTables (jobId) {
+      const [ stakers, transactions ] = await Promise.all([
+        this.axios.get('https://api.razor.network/votes/' + jobId).then(res => res.data),
+        this.axios.get('https://api.razor.network/voteEvents/' + jobId).then(res => res.data)
+      ])
 
-        },
-      async initBigChart(jobId) {
-        let data = await this.axios.get('https://api.razor.network/job/'+jobId)
-        // console.log('d',data)
-        // console.log('d',data.data)
-        // console.log('length',Object.keys(data.data).length)
-        let data2 = []
-        let labels = []
-        for(let i = 0; i < Object.keys(data.data).length; i++) {
-            data2.push((data.data[i].value/100))
-            labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
-        }
-        this.lastDataPoint = String(data2[data2.length-1])
+      const totalStake = stakers.message.reduce((acc, message) => acc + Number(message.weight), 0)
+      const _stakers = []
 
-        // console.log('d2',data2)
-        let chartData = {
-          datasets: [
-            {
-              label: 'Price',
-              data: data2
-            }
-          ],
-          labels: labels,
-        };
-        this.bigLineChart.chartData = chartData;
-        // this.bigLineChart.activeIndex = index;
-    },
-    async initTables(jobId) {
-        // console.log('initing')
-        let data = await this.axios.get('https://api.razor.network/votes/'+jobId)
-        // console.log(data.data)
-        let totalStake = 0
-        for(let i = 0; i < (data.data.message).length; i++) {
-            // this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker, value: Number(data.data.message[i].value), weight: Number(data.data.message[i].weight)})
-            // console.log('weight', Number(data.data.message[i].weight))
-            totalStake+=Number(data.data.message[i].weight)
-        }
-        // let tData = []
-        // this.SocialTrafficTable.tableData=[]
-        this.SocialTrafficTable.tableData=this.SocialTrafficTable.tableData.splice(0,this.SocialTrafficTable.tableData.length)
+      for (let i = 0; i < stakers.message.length; i++) {
+        _stakers.push({
+          staker: stakers.message[i].staker,
+          value: Number(stakers.message[i].value),
+          stake: Number(stakers.message[i].weight),
+          weight: Math.round(Number(stakers.message[i].weight) * 10000 / totalStake) / 100
+        })
+      }
 
-        for(let i = 0; i < (data.data.message).length; i++) {
-            this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
-                value: Number(data.data.message[i].value),
-                stake: Number(data.data.message[i].weight),
-                weight: Number(data.data.message[i].weight)*100/totalStake})
-        }
-        // this.SocialTrafficTable.tableData = tData.slice()
-        this.numStakers = String((data.data.message).length)
-        this.totalStake = String(totalStake)
-        let data2 = await this.axios.get('https://api.razor.network/voteEvents/'+jobId)
-        // console.log(data2.data.message)
-        // let tData2 = []
-        this.PageVisitsTable.tableData=this.PageVisitsTable.tableData.splice(0,this.PageVisitsTable.tableData.length)
-        for(let i = (data2.data.message).length-1; i>=0; i--) {
-            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value)})
-        }
-        // this.PageVisitsTable.tableData=tData2.slice()
+      this.stakers = _stakers
+      this.numStakers = String(stakers.message.length)
+      this.totalStake = String(totalStake)
+
+      const _transactions = []
+
+      for (let i = (transactions.message).length - 1; i >= 0; i--) {
+        _transactions.push({
+          epoch: transactions.message[i].epoch,
+          staker: transactions.message[i].staker,
+          action: transactions.message[i].action,
+          value: (transactions.message[i].value)
+        })
+      }
+
+      this.transactions = _transactions
     },
     async initCards() {
-        // console.log('initing')
-        let data = await this.axios.get('https://api.razor.network/epoch')
-        // console.log(data.message)
-        this.epoch = String(data.data.message)
-
-
+      // console.log('initing')
+      let data = await this.axios.get('https://api.razor.network/epoch')
+      // console.log(data.message)
+      this.epoch = String(data.data.message)
     },
-    async init(jobId)
-    {
-        await this.initCards()
-        await this.initBigChart(jobId)
-        await this.initTables(jobId)
+    async init(jobId) {
+      await this.initCards()
+      await this.initBigChart(jobId)
+      await this.initTables(jobId)
     }
-    },
-    mounted() {
-      // this.initBigChart(0);
-      this.getJobs()
-     // this.bigLineChart.allData=[5,5,5]
-    }
-  };
+  },
+  mounted() {
+    this.getJobs()
+  }
+}
 </script>
 <style></style>
