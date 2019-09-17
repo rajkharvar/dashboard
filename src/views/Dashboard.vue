@@ -240,7 +240,7 @@
             this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
                 value: Number(data.data.message[i].value),
                 stake: Number(data.data.message[i].weight),
-                weight: Number(data.data.message[i].weight)*100/totalStake})
+                weight: Math.round(Number(stakers.message[i].weight) * 10000 / totalStake) / 100
             // console.log('weight', Number(data.data.message[i].weight))
             // totalStake+=Number(data.data.message[i].weight)
         }
