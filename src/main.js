@@ -27,7 +27,9 @@ import VueAnalytics from 'vue-analytics'
 Vue.use(VueAnalytics, {
   id: 'UA-143423314-1'
 })
+import Jazzicon from 'vue-jazzicon'
 
+Vue.component('jazzicon', Jazzicon) // or Vue.component(Jazzicon.name, Jazzicon);
 // import Plugin from './plugins/Plugin'
 
 Vue.config.productionTip = false

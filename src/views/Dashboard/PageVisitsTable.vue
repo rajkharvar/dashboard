@@ -36,9 +36,11 @@
           <th scope="row">
             {{row.epoch}}
           </th>
-          <td scope="row">
-            {{row.staker}}
-        </td>
+
+        <td scope="row" style=" vertical-align: middle;" >
+            <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
+vertical-align: middle;"> {{row.staker}}</span>
+</td>
           <td>
             <span class="badge badge-primary">{{row.action}} </span>
           </td>

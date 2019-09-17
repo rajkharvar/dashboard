@@ -22,10 +22,11 @@
         </template>
 
         <template slot-scope="{row}">
-          <th scope="row">
-            {{row.staker}}
+          <th scope="row" style=" vertical-align: middle;" >
+              <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
+  vertical-align: middle;"> {{row.staker}}</span>
           </th>
-          <td>
+          <td >
             {{row.value}}
           </td>
           <td>
