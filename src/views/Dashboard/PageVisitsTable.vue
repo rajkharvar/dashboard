@@ -75,7 +75,7 @@
     return Math.floor(this.tableData.length / this.perPage)
 },
   dataPage() {
-      return this.tableData.slice(this.perPage*this.currentPage,this.perPage*(this.currentPage+1))
+      return this.tableData.slice(this.perPage*(this.currentPage-1),this.perPage*(this.currentPage))
   }
 }
 }
