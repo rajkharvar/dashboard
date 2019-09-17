@@ -240,10 +240,10 @@
             this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
                 value: Number(data.data.message[i].value),
                 stake: Number(data.data.message[i].weight),
-                weight: Math.round(Number(stakers.message[i].weight) * 10000 / totalStake) / 100
+                weight: Math.round(Number(data.data.message[i].weight) * 10000 / totalStake) / 100})
             // console.log('weight', Number(data.data.message[i].weight))
             // totalStake+=Number(data.data.message[i].weight)
-        })
+        }
         this.numStakers = String((data.data.message).length)
         this.totalStake = String(totalStake)
         let data2 = await this.axios.get('https://api.razor.network/voteEvents/1')
