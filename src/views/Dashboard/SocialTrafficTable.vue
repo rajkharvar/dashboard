@@ -26,18 +26,18 @@
               <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
   vertical-align: middle;"> {{row.staker}}</span>
           </th>
-          <td >
+          <td  style=" vertical-align: middle;">
             {{row.value}}
           </td>
-          <td>
+          <td  style=" vertical-align: middle;">
             {{row.stake}}
           </td>
-          <td>
+          <td  style=" vertical-align: middle;">
             <div class="d-flex align-items-center">
-              <span class="mr-2">{{row.weight}}%</span>
-              <base-progress :type="row.progressType"
+              <!-- <span class="mr-2">{{row.weight}}%</span> -->
+              <base-progress
                              class="pt-0"
-                             :show-percentage="false"
+                             :show-percentage="true"
                              :value="row.weight"
               />
             </div>

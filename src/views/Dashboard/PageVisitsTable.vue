@@ -33,7 +33,7 @@
         </template>
 
         <template slot-scope="{row}">
-          <th scope="row">
+          <th scope="row"  style=" vertical-align: middle;">
             {{row.epoch}}
           </th>
 
@@ -41,13 +41,13 @@
             <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
 vertical-align: middle;"> {{row.staker}}</span>
 </td>
-          <td>
+          <td  style=" vertical-align: middle;">
             <span class="badge badge-primary">{{row.action}} </span>
           </td>
-          <td>
+          <td  style=" vertical-align: middle;">
             {{row.value}}
           </td>
-          <td>
+          <td  style=" vertical-align: middle;">
             <!-- <i class="fas fa-arrow-up text-success mr-3"
                :class="row.bounceRateDirection === 'up' ? 'text-success': 'text-danger'">
             </i> -->

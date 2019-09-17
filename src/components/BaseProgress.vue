@@ -56,7 +56,7 @@
       },
       type: {
         type: String,
-        default: "default",
+        default: "info",
         description: "Progress type (e.g danger, primary etc)"
       },
       value: {
