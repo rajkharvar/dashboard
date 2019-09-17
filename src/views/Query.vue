@@ -129,6 +129,7 @@
             <!-- End charts-->
 
             <!--Tables-->
+            <div class="container">
             <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <!-- (url, selector, repeat, eth, account) -->
@@ -150,6 +151,7 @@
                     <a class="btn btn-success" @click = "createJob"> Submit </a>
                 <!-- </form> -->
         </div></div>
+      </div>
             <!-- <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <page-visits-table></page-visits-table>
