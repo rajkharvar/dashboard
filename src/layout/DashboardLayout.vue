@@ -9,16 +9,16 @@
         <sidebar-item
           :link="{
             name: 'Ether',
-            icon: 'ni ni-tv-2 text-primary',
+            icon: 'fab fa-ethereum text-grey',
             path: '/dashboard'
           }"
         />
 
-         <sidebar-item :link="{name: 'Bitcoin', icon: 'ni ni-planet text-blue', path: '/bitcoin'}"/>
-        <sidebar-item :link="{name: 'Custom Query', icon: 'ni ni-pin-3 text-orange', path: '/query'}"/>
-         <sidebar-item :link="{name: 'Explorer Custom Queries', icon: 'ni ni-single-02 text-yellow', path: '/custom'}"/>
-        <!-- <sidebar-item :link="{name: 'Crypto', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>
-        <sidebar-item :link="{name: 'Stocks', icon: 'ni ni-key-25 text-info', path: '/login'}"/> -->
+         <sidebar-item :link="{name: 'Bitcoin', icon: 'fab fa-bitcoin  text-orange', path: '/bitcoin'}"/>
+        <sidebar-item :link="{name: 'Custom Query', icon: 'fas fa-search text-primary', path: '/query'}"/>
+         <sidebar-item :link="{name: 'Explorer Custom Queries', icon: 'fas fa-binoculars text-primary', path: '/custom'}"/>
+        <sidebar-item :link="{name: 'Facuet', icon: 'fas fa-shower text-primary', path: '/faucet'}"/>
+    <!--     <sidebar-item :link="{name: 'Stocks', icon: 'ni ni-key-25 text-info', path: '/login'}"/> -->
         <!-- <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> -->
 
       </template>

@@ -4,6 +4,7 @@ import Web3 from 'web3'
 let web3
 let accounts
 let error
+// let ethereum
 export const EventBus = new Vue()
 
 if (typeof window.ethereum === 'undefined'
@@ -35,6 +36,40 @@ export const createJob = async (url, selector, repeat, eth) => {
     // id,
     tx: res.transactionHash
   }
+}
+
+export const faucet = async (address) => {
+  let faucetBuild = require('../../build/contracts/Faucet.json')
+
+  let networkid = 4
+  let faucet = new web3.eth.Contract(faucetBuild['abi'], faucetBuild['networks'][networkid].address)
+
+  // const accounts = await web3.eth.getAccounts()
+  accounts = await ethereum.enable()
+
+  // console.log(accounts)
+  const res = await faucet.methods.faucet(address).send({
+    from: accounts[0] })
+
+  return {
+    // id,
+    tx: res.transactionHash
+  }
+}
+
+export const getSchBalance = async (address) => {
+  let simpleTokenBuild = require('../../build/contracts/SimpleToken.json')
+
+  let networkid = 4
+  let simpleToken = new web3.eth.Contract(simpleTokenBuild['abi'], simpleTokenBuild['networks'][networkid].address)
+
+  // const accounts = await web3.eth.getAccounts()
+  accounts = await ethereum.enable()
+
+  // console.log(accounts)
+  const res = await simpleToken.methods.balanceOf(address).call()
+
+  return res
 }
 
 // export const getContractAddress = (assetId) => {
