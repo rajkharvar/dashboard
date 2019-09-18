@@ -146,8 +146,8 @@
                     <input  v-model = "url" placeholder="JSON URL" class="form-control" />
 
                     <input  v-model= "selector" placeholder="JSON selector" class="form-control" />
-                    Repeat: <input type="checkbox"   v-model="repeat" placeholder="selector" class="form-control" />
-                    <input  v-model='eth' placeholder="fees in ether" class="form-control" />
+                    <!-- Repeat: <input type="checkbox"   v-model="repeat" placeholder="selector" class="form-control" /> -->
+                    <!-- <input  v-model='eth' placeholder="fees in ether" class="form-control" /> -->
                     <a class="btn btn-success" @click = "createJob"> Submit </a>
                 <!-- </form> -->
         </div></div>
@@ -191,9 +191,9 @@ import { createJob } from '@/utils/commons'
           error:null,
           url: null,
           selector: null,
-          eth: null,
+          eth: 1,
           account: null,
-          repeat: false,
+          repeat: true,
         bigLineChart: {
           allData: [],
           activeIndex: 0,
