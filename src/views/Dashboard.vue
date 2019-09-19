@@ -4,7 +4,7 @@
             <!-- Card stats -->
             <div class="row">
                 <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Last Datapoint"
+                    <stats-card title="Last Price"
                                 type="gradient-red"
                                 :sub-title="lastDataPoint"
                                 icon="ni ni-atom"
@@ -236,6 +236,7 @@
             // console.log('weight', Number(data.data.message[i].weight))
             totalStake+=Number(data.data.message[i].weight)
         }
+        // totalStake = String(totalStake)+ " SCH"
         for(let i = 0; i < (data.data.message).length; i++) {
             this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
                 value: Number(data.data.message[i].value),

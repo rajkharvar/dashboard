@@ -4,7 +4,7 @@
             <!-- Card stats -->
             <div class="row">
                 <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Last Datapoint"
+                    <stats-card title="Last Price"
                                 type="gradient-red"
                                 :sub-title="lastDataPoint"
                                 icon="ni ni-atom"

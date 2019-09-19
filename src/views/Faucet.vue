@@ -169,7 +169,7 @@
 </template>
 <script>
 
-import { createJob, faucet, getSchBalance } from '@/utils/commons'
+import { faucet, getSchBalance } from '@/utils/commons'
 
   // Charts
   // import * as chartConfigs from '@/components/Charts/config';
