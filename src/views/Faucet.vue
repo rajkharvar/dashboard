@@ -138,7 +138,7 @@
 
                     <b>Note: Use ethereum compatible browser and set network to Rinkeby. Make sure you have some eth for tx. </b> <br/>
                     1. Get some rinkeby ether from <a target ="_blank" href="https://faucet.rinkeby.io/">here</a><br/>
-                    2. Enter your addres and click the button below <br/>
+                    2. Enter your address and click the button below <br/>
                     3. 1000 rinkeby SCH will be given once per address
 <br/>
 <br/>
