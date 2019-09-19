@@ -132,25 +132,35 @@
             <div class="container">
             <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
+
                     <!-- (url, selector, repeat, eth, account) -->
                 <!-- <form  @submit="formSubmit"> -->
-                    <h1>Create custom query</h1>
+                    <h1>Create Custom Query</h1>
 
-                    Note: Use ethereum compatible browser and set network to Rinkeby. Make sure you have some eth for tx. <br/>
-                    Example: Use the following URL to fetch price of US stocks from NASDAQ. Substitute AAPL with symbol of any stock. <br/>
-                    https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=E1BN9Y09VQ32BQ00<br/>
-                    Use selector: Global Quote["05. price"]<br/>
-                    check "explore custom queries" page after a few minutes to see the result.<br/>
-                    another example: https://api.gemini.com/v1/pubticker/ltcusd selector: last <br/>
-
+                    <p class = "description"> <b>Note: Use ethereum compatible browser and set network to Rinkeby. Make sure you have some eth for tx.</b></p>
+                <p class = "description">Example: Use the following URL to fetch price of US stocks from NASDAQ. Substitute AAPL with symbol of any stock.</p>
+                    <p class = "description">https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=E1BN9Y09VQ32BQ00</p>
+                    <p class = "description">Use selector: Global Quote["05. price"]</p>
+                    <p class = "description">Check "Explore custom queries" page after a few minutes to see the result.</p>
+                    <p class = "description">another example: https://api.gemini.com/v1/pubticker/ltcusd selector: last </p>
+                    <br/>
+<div class="form-group">
                     <input  v-model = "url" placeholder="JSON URL" class="form-control" />
+</div>
+<div class="form-group">
 
                     <input  v-model= "selector" placeholder="JSON selector" class="form-control" />
+                </div>
+                <div class="form-group">
+
                     <!-- Repeat: <input type="checkbox"   v-model="repeat" placeholder="selector" class="form-control" /> -->
                     <!-- <input  v-model='eth' placeholder="fees in ether" class="form-control" /> -->
                     <a class="btn btn-success" @click = "createJob"> Submit </a>
+                </div>
                 <!-- </form> -->
-        </div></div>
+        </div>
+        </div>
+    </div>
       </div>
             <!-- <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
@@ -163,7 +173,6 @@
             <!--End tables-->
         <!-- </div> -->
 
-    </div>
 </template>
 <script>
 

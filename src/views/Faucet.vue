@@ -135,22 +135,23 @@
                     <!-- (url, selector, repeat, eth, account) -->
                 <!-- <form  @submit="formSubmit"> -->
                     <h1>Schell Faucet</h1>
+<p class = "description">
+                    <b>Note: Use Ethereum compatible browser and set network to Rinkeby. Make sure you have some eth for tx. </b> </p>
+                    <p class = "description">1. Get some Rinkeby Ether from <a target ="_blank" href="https://faucet.rinkeby.io/">here</a></p>
+                    <p class = "description">2. Enter your address and click the button below </p>
+                    <p class = "description">3. 1000 Rinkeby SCH will be given once per address</p>
+                    <div class="form-group">
 
-                    <b>Note: Use ethereum compatible browser and set network to Rinkeby. Make sure you have some eth for tx. </b> <br/>
-                    1. Get some rinkeby ether from <a target ="_blank" href="https://faucet.rinkeby.io/">here</a><br/>
-                    2. Enter your address and click the button below <br/>
-                    3. 1000 rinkeby SCH will be given once per address
-<br/>
-<br/>
                     <input  v-model = "address" placeholder="0xdeadbeef" class="form-control" />
-                    <br/>
+</div>                    <div class="form-group">
 
 
-                    <div><a class="btn btn-success" @click = "submit"> Get some SCH </a> </div>
-                    <br/>
-                    <div><a class="btn btn-success" @click = "getBalance"> Get SCH Balance </a> </div>
-<br/>
-                    You SCH balance: {{balance}}
+                    <a class="btn btn-success" @click = "submit"> Get SCH </a> </div>
+                    <div class="form-group">
+<a class="btn btn-success" @click = "getBalance"> Check SCH Balance </a> </div>
+<p class="description">
+    Your SCH balance: {{balance}}
+</p>
                 <!-- </form> -->
         </div></div>
       </div>
