@@ -10,16 +10,16 @@
                     <div class="nav-wrapper">
     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
         <li class="nav-item">
-            <a class="nav-link mb-sm-3 mb-md-0" style="cursor: pointer"  v-bind:class="{ active: activeTab[0]}" id="tabs-icons-text-1-tab" data-toggle="tab" @click="activate(0)" role="tab" aria-controls="tabs-icons-text-1" :aria-selected=activeTab[0]><i class="ni ni-cloud-upload-96 mr-2"></i>Votes </a>
+            <a class="nav-link mb-sm-3 mb-md-0" style="cursor: pointer"  v-bind:class="{ active: activeTab[0]}" id="tabs-icons-text-3-tab" data-toggle="tab" @click="activate(0)" role="tab" aria-controls="tabs-icons-text-1" :aria-selected=activeTab[0]><i class="fas fa-chart-bar mr-2"></i>Votes </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link mb-sm-3 mb-md-0"  style="cursor: pointer"  v-bind:class="{ active: activeTab[1]}" id="tabs-icons-text-2-tab" data-toggle="tab" @click="activate(1)"  role="tab" aria-controls="tabs-icons-text-2" :aria-selected=activeTab[1]><i class="ni ni-bell-55 mr-2"></i>Blocks</a>
+            <a class="nav-link mb-sm-3 mb-md-0"  style="cursor: pointer"  v-bind:class="{ active: activeTab[1]}" id="tabs-icons-text-3-tab" data-toggle="tab" @click="activate(1)"  role="tab" aria-controls="tabs-icons-text-2" :aria-selected=activeTab[1]><i class="fas fa-chart-bar  mr-2"></i>Blocks</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link mb-sm-3 mb-md-0" style="cursor: pointer"   v-bind:class="{ active: activeTab[2]}" id="tabs-icons-text-3-tab" data-toggle="tab" @click="activate(2)" role="tab" aria-controls="tabs-icons-text-3" :aria-selected=activeTab[2]><i class="ni ni-calendar-grid-58 mr-2"></i>Jobs</a>
+            <a class="nav-link mb-sm-3 mb-md-0" style="cursor: pointer"   v-bind:class="{ active: activeTab[2]}" id="tabs-icons-text-3-tab" data-toggle="tab" @click="activate(2)" role="tab" aria-controls="tabs-icons-text-3" :aria-selected=activeTab[2]><i class="fas fa-chart-bar  mr-2"></i>Jobs</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link mb-sm-3 mb-md-0" style="cursor: pointer"   v-bind:class="{ active: activeTab[3]}" id="tabs-icons-text-3-tab" data-toggle="tab" @click="activate(3)"  role="tab" aria-controls="tabs-icons-text-3" :aria-selected=activeTab[3]><i class="ni ni-calendar-grid-58 mr-2"></i>Staking</a>
+            <a class="nav-link mb-sm-3 mb-md-0" style="cursor: pointer"   v-bind:class="{ active: activeTab[3]}" id="tabs-icons-text-3-tab" data-toggle="tab" @click="activate(3)"  role="tab" aria-controls="tabs-icons-text-3" :aria-selected=activeTab[3]><i class="fas fa-chart-bar mr-2"></i>Staking</a>
         </li>
     </ul>
 </div>
