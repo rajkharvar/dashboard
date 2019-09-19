@@ -18,7 +18,7 @@
          <sidebar-item :link="{name: 'Explorer Custom Queries', icon: 'fas fa-binoculars text-primary', path: '/custom'}"/>
         <sidebar-item :link="{name: 'Custom Query', icon: 'fas fa-search text-primary', path: '/query'}"/>
         <sidebar-item :link="{name: 'Faucet', icon: 'fas fa-shower text-primary', path: '/faucet'}"/>
-    <!--     <sidebar-item :link="{name: 'Stocks', icon: 'ni ni-key-25 text-info', path: '/login'}"/> -->
+        <sidebar-item :link="{name: 'Stats', icon: 'fas fa-chart-bar text-primary', path: '/stats'}"/>
         <!-- <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> -->
 
       </template>

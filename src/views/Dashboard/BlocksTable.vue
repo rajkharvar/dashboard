@@ -3,7 +3,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Recent Votes</h3>
+          <h3 class="mb-0">Recent Blocks</h3>
         </div>
         <div class="col text-right">
           <!-- <a href="#!" class="btn btn-sm btn-primary">Explore on Etherscan</a> -->
@@ -25,12 +25,15 @@
                   :data="dataPage"
                   :per-page="perPage"
 :current-page="currentPage">
+<!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, medians: data.medians, jobIds: data.jobIds, timestamp: data.timestamp }) -->
+
         <template slot="columns">
           <th>Epoch</th>
           <th>Staker</th>
           <th>Age</th>
           <th>Action</th>
-          <th>Value</th>
+          <th>Medians</th>
+          <th>JobIds</th>
         </template>
 
         <template slot-scope="{row}">
@@ -49,7 +52,10 @@ vertical-align: middle;"> {{row.staker}}</span>
             <span class="badge badge-primary">{{row.action}} </span>
           </td>
           <td  style=" vertical-align: middle;">
-            {{row.value}}
+            {{row.medians}}
+          </td>
+          <td  style=" vertical-align: middle;">
+            {{row.jobIds}}
           </td>
         </template>
 
@@ -60,7 +66,7 @@ vertical-align: middle;"> {{row.staker}}</span>
 </template>
 <script>
   export default {
-    name: 'page-visits-table',
+    name: 'blocks-table',
     props: ['tableData'],
     data() {
       return {

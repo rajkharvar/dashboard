@@ -3,7 +3,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Recent Votes</h3>
+          <h3 class="mb-0">Recent Staking Transactions</h3>
         </div>
         <div class="col text-right">
           <!-- <a href="#!" class="btn btn-sm btn-primary">Explore on Etherscan</a> -->
@@ -25,25 +25,28 @@
                   :data="dataPage"
                   :per-page="perPage"
 :current-page="currentPage">
+<!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, value: data.amount, timestamp: data.timestamp }) -->
+
+
         <template slot="columns">
           <th>Epoch</th>
           <th>Staker</th>
           <th>Age</th>
           <th>Action</th>
           <th>Value</th>
+          <!-- <th>Credit</th> -->
         </template>
 
         <template slot-scope="{row}">
           <th scope="row"  style=" vertical-align: middle;">
             {{row.epoch}}
           </th>
-
-        <td scope="row" style=" vertical-align: middle;" >
-            <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
-vertical-align: middle;"> {{row.staker}}</span>
-</td>
+          <td scope="row" style=" vertical-align: middle;" >
+              <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
+              vertical-align: middle;"> {{row.staker}}</span>
+          </td>
           <td  style=" vertical-align: middle;">
-            {{row.timestamp}}
+              {{row.timestamp}}
           </td>
           <td  style=" vertical-align: middle;">
             <span class="badge badge-primary">{{row.action}} </span>
@@ -51,6 +54,10 @@ vertical-align: middle;"> {{row.staker}}</span>
           <td  style=" vertical-align: middle;">
             {{row.value}}
           </td>
+
+          <!-- <td  style=" vertical-align: middle;">
+            {{row.credit}}
+          </td> -->
         </template>
 
       </base-table>
@@ -60,7 +67,7 @@ vertical-align: middle;"> {{row.staker}}</span>
 </template>
 <script>
   export default {
-    name: 'page-visits-table',
+    name: 'staking-table',
     props: ['tableData'],
     data() {
       return {

@@ -164,12 +164,16 @@ export default {
 
       const _transactions = []
 
-      for (let i = (transactions.message).length - 1; i >= 0; i--) {
+      let age
+      for(let i = (transactions.message).length-1; i>=0; i--) {
+          age = this.moment.unix(transactions.message[i].timestamp).fromNow()
+
         _transactions.push({
           epoch: transactions.message[i].epoch,
           staker: transactions.message[i].staker,
           action: transactions.message[i].action,
-          value: (transactions.message[i].value)
+          value: (transactions.message[i].value),
+          timestamp:age
         })
       }
 

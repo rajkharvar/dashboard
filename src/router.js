@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import DashboardLayout from '@/layout/DashboardLayout'
-import AuthLayout from '@/layout/AuthLayout'
+// import AuthLayout from '@/layout/AuthLayout'
 Vue.use(Router)
 
 export default new Router({
@@ -44,26 +44,9 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Faucet.vue')
         },
         {
-          path: '/tables',
-          name: 'tables',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
-        }
-      ]
-    },
-    {
-      path: '/',
-      redirect: 'login',
-      component: AuthLayout,
-      children: [
-        {
-          path: '/login',
-          name: 'login',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Login.vue')
-        },
-        {
-          path: '/register',
-          name: 'register',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
+          path: '/stats',
+          name: 'stats',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Stats.vue')
         }
       ]
     }

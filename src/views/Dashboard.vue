@@ -249,8 +249,10 @@
         this.totalStake = String(totalStake)
         let data2 = await this.axios.get('https://api.razor.network/voteEvents/1')
         // console.log(data2.data.message)
+        let age
         for(let i = (data2.data.message).length-1; i>=0; i--) {
-            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value)})
+            age = this.moment.unix(data2.data.message[i].timestamp).fromNow()
+            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value), timestamp: age})
         }
     },
     async initCards() {
