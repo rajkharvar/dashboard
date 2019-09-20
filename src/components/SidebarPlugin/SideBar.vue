@@ -12,7 +12,7 @@
 
             <slot name="mobile-right">
                 <ul class="nav align-items-center d-md-none">
-                    
+
                     <!-- <base-dropdown class="nav-item" position="right">
                         <a slot="title" class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -120,7 +120,7 @@
     props: {
       logo: {
         type: String,
-        default: 'img/brand/icon-left-font3.png',
+        default: 'img/brand/RazorScan_trim.png',
         description: 'Sidebar app logo'
       },
       autoClose: {
