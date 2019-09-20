@@ -46,7 +46,8 @@ vertical-align: middle;"> {{row.staker}}</span>
             {{row.timestamp}}
           </td>
           <td  style=" vertical-align: middle;">
-            <span class="badge badge-primary">{{row.action}} </span>
+            <span class="badge badge-primary" v-if="row.action==='Committed'">{{row.action}} </span>
+            <span class="badge badge-info"  v-else>{{row.action}} </span>
           </td>
           <td  style=" vertical-align: middle;">
             {{row.value}}
