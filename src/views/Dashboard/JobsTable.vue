@@ -47,9 +47,11 @@
           <td  style=" vertical-align: middle;">
             {{row.id}}
           </td>
-          <td scope="row" style=" vertical-align: middle;" >
-              <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
-              vertical-align: middle;"> {{row.creator}}</span>
+          <td scope="row">
+            <div class="jazz-box">
+              <jazzicon :address=row.staker :diameter="30" />
+              <div>{{row.creator}}</div>
+            </div>
           </td>
           <td  style=" vertical-align: middle;">
             {{row.timestamp}}

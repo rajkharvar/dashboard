@@ -38,10 +38,12 @@
             {{row.epoch}}
           </th>
 
-        <td scope="row" style=" vertical-align: middle;" >
-            <jazzicon :address=row.staker :diameter="30" style="display:inline; vertical-align: middle;" /> <span style="  display: inline;
-vertical-align: middle;"> {{row.staker}}</span>
-</td>
+          <td scope="row">
+            <div class="jazz-box">
+              <jazzicon :address=row.staker :diameter="30" />
+              <div>{{row.staker}}</div>
+            </div>
+          </td>
           <td  style=" vertical-align: middle;">
             {{row.timestamp}}
           </td>
@@ -83,5 +85,3 @@ vertical-align: middle;"> {{row.staker}}</span>
 }
 
 </script>
-<style>
-</style>
