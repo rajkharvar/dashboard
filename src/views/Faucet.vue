@@ -146,9 +146,9 @@
 </div>                    <div class="form-group">
 
 
-                    <a class="btn btn-success" @click = "submit"> Get SCH </a> </div>
+                    <div class="btn btn-primary" @click = "submit"> Get SCH </div> </div>
                     <div class="form-group">
-<a class="btn btn-success" @click = "getBalance"> Check SCH Balance </a> </div>
+<div class="btn btn-primary" @click = "getBalance"> Check SCH Balance </div> </div>
 <p class="description">
     Your SCH balance: {{balance}}
 </p>

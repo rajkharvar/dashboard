@@ -137,7 +137,7 @@
                 <!-- <form  @submit="formSubmit"> -->
                     <h1>Create Custom Query</h1>
 
-                    <p class = "description"> <b>Note: Use ethereum compatible browser and set network to Rinkeby. Make sure you have some eth for tx.</b></p>
+                    <p class = "description"> <b>Note: Use ethereum compatible browser and set network to Rinkeby. Make sure you have some ether to pay the transaction fees.</b></p>
                 <p class = "description">Example: Use the following URL to fetch price of US stocks from NASDAQ. Substitute AAPL with symbol of any stock.</p>
                     <p class = "description">https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=E1BN9Y09VQ32BQ00</p>
                     <p class = "description">Use selector: Global Quote["05. price"]</p>
@@ -155,7 +155,10 @@
 
                     <!-- Repeat: <input type="checkbox"   v-model="repeat" placeholder="selector" class="form-control" /> -->
                     <!-- <input  v-model='eth' placeholder="fees in ether" class="form-control" /> -->
-                    <a class="btn btn-success" @click = "createJob"> Submit </a>
+                    <div class = 'row'><div class="btn btn-primary" @click = "testQuery"> Test Query </div> </div>
+
+                    <div class = 'row' ><p class = "description"> Result of the query: {{datum}}</p> </div>
+                    <div class= 'row' ><div class="btn btn-primary" @click = "createJob"> Submit </div> </div>
                 </div>
                 <!-- </form> -->
         </div>
@@ -176,7 +179,7 @@
 </template>
 <script>
 
-import { createJob } from '@/utils/commons'
+import { createJob, get } from '@/utils/commons'
 
   // Charts
   // import * as chartConfigs from '@/components/Charts/config';
@@ -203,6 +206,7 @@ import { createJob } from '@/utils/commons'
           eth: 1,
           account: null,
           repeat: true,
+          datum: '',
         bigLineChart: {
           allData: [],
           activeIndex: 0,
@@ -237,6 +241,20 @@ import { createJob } from '@/utils/commons'
     methods: {
          async createJob () {
           await createJob(this.url, this.selector, this.repeat, this.eth)
+          // this.refresh()
+      },
+         async testQuery () {
+             try {
+           let response = await this.axios.get(this.url)
+           // console.log(response)
+           this.datum = await get(response.data, this.selector)
+           // datum = Math.floor(Number(datum) * 100)
+           // data.push(datum)
+         } catch (e) {
+           // console.error(e)
+           this.datum = "Error"
+         }
+
           // this.refresh()
       },
       async initBigChart() {

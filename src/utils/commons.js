@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Web3 from 'web3'
+var _ = require('lodash/object')
+
 // import BN from 'bignumber.js'
 let web3
 let accounts
-let error
+// let error
 // let ethereum
 export const EventBus = new Vue()
 
@@ -70,6 +72,10 @@ export const getSchBalance = async (address) => {
   const res = await simpleToken.methods.balanceOf(address).call()
 
   return res
+}
+
+export const get = async (data, selector) => {
+  return _.get(data, selector)
 }
 
 // export const getContractAddress = (assetId) => {
