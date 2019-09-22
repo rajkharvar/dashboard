@@ -192,7 +192,11 @@
         let age
         for(let i = (data2.data.message).length-1; i>=0; i--) {
             age = this.moment.unix(data2.data.message[i].timestamp).fromNow()
-            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value), timestamp: age})
+            this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch,
+                 staker: data2.data.message[i].staker,
+                 action: data2.data.message[i].action,
+                 value: Array.isArray(data2.data.message[i].value)?data2.data.message[i].value.join(","):data2.data.message[i].value,
+                 timestamp: age})
         }
     },
 
@@ -208,10 +212,10 @@
             this.BlocksTable.tableData.push({epoch: data2.data.message[i].epoch,
                  staker: data2.data.message[i].staker,
                  action: data2.data.message[i].action,
-                 medians: (data2.data.message[i].medians),
-                  jobIds: (data2.data.message[i].jobIds),
+                 medians: (data2.data.message[i].medians.join(",")),
+                  jobIds: (data2.data.message[i].jobIds.join(",")),
                  iteration: (data2.data.message[i].iteration),
-                  biggestStakerId: (data2.data.message[i].biggestStakerId), 
+                  biggestStakerId: (data2.data.message[i].biggestStakerId),
                   timestamp: age})
         }
     },
