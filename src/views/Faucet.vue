@@ -150,7 +150,8 @@
                     <div class="form-group">
 <div class="btn btn-primary" @click = "getBalance"> Check SCH Balance </div> </div>
 <p class="description">
-    Your SCH balance: {{balance}}
+    {{balanceText}}
+    <!-- Your SCH balance: {{balance}} -->
 </p>
                 <!-- </form> -->
         </div></div>
@@ -192,7 +193,8 @@ import { faucet, getSchBalance } from '@/utils/commons'
     data() {
       return {
           address:null,
-          balance: 0
+          balance: 0,
+          balanceText: ''
 
 
 
@@ -212,7 +214,9 @@ import { faucet, getSchBalance } from '@/utils/commons'
           await faucet(this.address)
           // this.refresh()
       }, async getBalance() {
+          this.balanceText = ''
           this.balance = await getSchBalance(this.address)
+          this.balanceText = "Your SCH balance:" + String(this.balance)
 
       }
 

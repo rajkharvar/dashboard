@@ -157,7 +157,7 @@
                     <!-- <input  v-model='eth' placeholder="fees in ether" class="form-control" /> -->
                     <div class = 'row'><div class="btn btn-primary" @click = "testQuery"> Test Query </div> </div>
 
-                    <div class = 'row' ><p class = "description"> Result of the query: {{datum}}</p> </div>
+                    <div class = 'row' ><p class = "description"> {{datumText}}</p> </div>
                     <div class= 'row' ><div class="btn btn-primary" @click = "createJob"> Submit </div> </div>
                 </div>
                 <!-- </form> -->
@@ -207,6 +207,7 @@ import { createJob, get } from '@/utils/commons'
           account: null,
           repeat: true,
           datum: '',
+          datumText: '',
         bigLineChart: {
           allData: [],
           activeIndex: 0,
@@ -245,9 +246,11 @@ import { createJob, get } from '@/utils/commons'
       },
          async testQuery () {
              try {
+                 this.datumText = ''
            let response = await this.axios.get(this.url)
            // console.log(response)
            this.datum = await get(response.data, this.selector)
+            this.datumText = 'Result of the query:'+ String(this.datum)
            // datum = Math.floor(Number(datum) * 100)
            // data.push(datum)
          } catch (e) {

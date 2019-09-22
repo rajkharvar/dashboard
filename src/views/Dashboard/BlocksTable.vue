@@ -34,6 +34,8 @@
           <th>Action</th>
           <th>Medians</th>
           <th>JobIds</th>
+          <th>Iteration</th>
+          <th>Biggest Staker Id</th>
         </template>
 
         <template slot-scope="{row}">
@@ -61,6 +63,12 @@
           </td>
           <td  style=" vertical-align: middle;">
             {{row.jobIds}}
+          </td>
+          <td  style=" vertical-align: middle;">
+            {{row.iteration}}
+          </td>
+          <td  style=" vertical-align: middle;">
+            {{row.biggestStakerId}}
           </td>
         </template>
 

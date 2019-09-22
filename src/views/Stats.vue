@@ -168,26 +168,26 @@
     // },
     async initTables() {
         // console.log('initing')
-        let data = await this.axios.get('https://api.razor.network/votes/1')
-        // console.log(data.data)
-        let totalStake = 0
-        for(let i = 0; i < (data.data.message).length; i++) {
-            // this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker, value: Number(data.data.message[i].value), weight: Number(data.data.message[i].weight)})
-            // console.log('weight', Number(data.data.message[i].weight))
-            totalStake+=Number(data.data.message[i].weight)
-        }
-        // totalStake = String(totalStake)+ " SCH"
-        for(let i = 0; i < (data.data.message).length; i++) {
-            this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
-                value: Number(data.data.message[i].value),
-                stake: Number(data.data.message[i].weight),
-                weight: Math.round(Number(data.data.message[i].weight) * 10000 / totalStake) / 100})
-            // console.log('weight', Number(data.data.message[i].weight))
-            // totalStake+=Number(data.data.message[i].weight)
-        }
-        this.numStakers = String((data.data.message).length)
-        this.totalStake = String(totalStake)
-        let data2 = await this.axios.get('https://api.razor.network/voteEvents/1')
+        // let data = await this.axios.get('https://api.razor.network/votes/1')
+        // // console.log(data.data)
+        // let totalStake = 0
+        // for(let i = 0; i < (data.data.message).length; i++) {
+        //     // this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker, value: Number(data.data.message[i].value), weight: Number(data.data.message[i].weight)})
+        //     // console.log('weight', Number(data.data.message[i].weight))
+        //     totalStake+=Number(data.data.message[i].weight)
+        // }
+        // // totalStake = String(totalStake)+ " SCH"
+        // for(let i = 0; i < (data.data.message).length; i++) {
+        //     this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
+        //         value: Number(data.data.message[i].value),
+        //         stake: Number(data.data.message[i].weight),
+        //         weight: Math.round(Number(data.data.message[i].weight) * 10000 / totalStake) / 100})
+        //     // console.log('weight', Number(data.data.message[i].weight))
+        //     // totalStake+=Number(data.data.message[i].weight)
+        // }
+        // this.numStakers = String((data.data.message).length)
+        // this.totalStake = String(totalStake)
+        let data2 = await this.axios.get('https://api.razor.network/voteEvents/')
         // console.log(data2.data.message)
         let age
         for(let i = (data2.data.message).length-1; i>=0; i--) {
@@ -205,7 +205,14 @@
         let age
         for(let i = (data2.data.message).length-1; i>=0; i--) {
             age = this.moment.unix(data2.data.message[i].timestamp).fromNow()
-            this.BlocksTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, medians: (data2.data.message[i].medians),  jobIds: (data2.data.message[i].jobIds), timestamp: age})
+            this.BlocksTable.tableData.push({epoch: data2.data.message[i].epoch,
+                 staker: data2.data.message[i].staker,
+                 action: data2.data.message[i].action,
+                 medians: (data2.data.message[i].medians),
+                  jobIds: (data2.data.message[i].jobIds),
+                 iteration: (data2.data.message[i].iteration),
+                  biggestStakerId: (data2.data.message[i].biggestStakerId), 
+                  timestamp: age})
         }
     },
     async initStakingTable() {
