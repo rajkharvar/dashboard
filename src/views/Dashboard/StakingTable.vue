@@ -33,7 +33,8 @@
           <th>Staker</th>
           <th>Age</th>
           <th>Action</th>
-          <th>Value</th>
+          <th>Change</th>
+          <th>New Stake</th>
           <!-- <th>Credit</th> -->
         </template>
 
@@ -55,7 +56,11 @@
             <span class="badge badge-primary">{{row.action}} </span>
           </td>
           <td  style=" vertical-align: middle;">
-            {{row.value}}
+            <span class="text-success" v-if="row.change>0">+{{row.change}}</span>
+            <span class="text-danger" v-else>+{{row.change}}</span>
+          </td>
+          <td  style=" vertical-align: middle;">
+            {{row.newStake}}
           </td>
 
           <!-- <td  style=" vertical-align: middle;">

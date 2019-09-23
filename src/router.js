@@ -47,7 +47,12 @@ export default new Router({
           path: '/stats',
           name: 'stats',
           component: () => import(/* webpackChunkName: "demo" */ './views/Stats.vue')
-        }
+      },
+      {
+        path: '/staker/:address',
+        name: 'staker',
+        component: () => import(/* webpackChunkName: "demo" */ './views/Staker.vue')
+      }
       ]
     }
   ]

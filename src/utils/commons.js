@@ -22,6 +22,7 @@ if (typeof window.ethereum === 'undefined'
 export const createJob = async (url, selector, repeat, eth) => {
   let jobManagerBuild = require('../../build/contracts/JobManager.json')
 
+  // let networkid = 420
   let networkid = 4
   let jobManager = new web3.eth.Contract(jobManagerBuild['abi'], jobManagerBuild['networks'][networkid].address)
 

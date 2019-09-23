@@ -226,14 +226,18 @@
         // console.log(data2.data.message)
         let age
         let data
+        let change
         for(let i = (data2.data.message).length-1; i>=0; i--) {
             age = this.moment.unix(data2.data.message[i].timestamp).fromNow()
             data = data2.data.message[i]
+            change = data.newStake - data.previousStake
+            if(isNaN(change)) change = 0
             this.StakingTable.tableData.push({
                 epoch: data.epoch,
                 staker: data.staker,
                 action: data.action,
-                value: data.value,
+                newStake: data.newStake,
+                change: change,
                timestamp: age})
         }
     },
