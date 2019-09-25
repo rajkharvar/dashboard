@@ -5,6 +5,8 @@ var _ = require('lodash/object')
 // import BN from 'bignumber.js'
 let web3
 let accounts
+let networkid = 420
+
 // let error
 // let ethereum
 export const EventBus = new Vue()
@@ -22,8 +24,7 @@ if (typeof window.ethereum === 'undefined'
 export const createJob = async (url, selector, repeat, eth) => {
   let jobManagerBuild = require('../../build/contracts/JobManager.json')
 
-  // let networkid = 420
-  let networkid = 4
+  // let networkid = 4
   let jobManager = new web3.eth.Contract(jobManagerBuild['abi'], jobManagerBuild['networks'][networkid].address)
 
   // const accounts = await web3.eth.getAccounts()
@@ -44,7 +45,6 @@ export const createJob = async (url, selector, repeat, eth) => {
 export const faucet = async (address) => {
   let faucetBuild = require('../../build/contracts/Faucet.json')
 
-  let networkid = 4
   let faucet = new web3.eth.Contract(faucetBuild['abi'], faucetBuild['networks'][networkid].address)
 
   // const accounts = await web3.eth.getAccounts()
@@ -63,7 +63,6 @@ export const faucet = async (address) => {
 export const getSchBalance = async (address) => {
   let simpleTokenBuild = require('../../build/contracts/SimpleToken.json')
 
-  let networkid = 4
   let simpleToken = new web3.eth.Contract(simpleTokenBuild['abi'], simpleTokenBuild['networks'][networkid].address)
 
   // const accounts = await web3.eth.getAccounts()
@@ -78,6 +77,8 @@ export const getSchBalance = async (address) => {
 export const get = async (data, selector) => {
   return _.get(data, selector)
 }
+
+export const url = 'http://localhost:3000/'
 
 // export const getContractAddress = (assetId) => {
 //   return CDPFactory.methods.contracts(assetId).call()

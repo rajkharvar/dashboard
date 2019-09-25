@@ -217,9 +217,7 @@ import { faucet, getSchBalance } from '@/utils/commons'
           this.balanceText = ''
           this.balance = await getSchBalance(this.address)
           this.balanceText = "Your SCH balance:" + String(this.balance)
-
       }
-
     },
     mounted() {
       // this.getBalance();

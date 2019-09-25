@@ -71,6 +71,7 @@ import LineChart from '@/components/Charts/LineChart';
 
 import SocialTrafficTable from './Dashboard/SocialTrafficTable';
 import PageVisitsTable from './Dashboard/PageVisitsTable';
+import { url } from '@/utils/commons'
 
 export default {
   components: {
@@ -106,7 +107,7 @@ export default {
   },
   methods: {
     async getJobs() {
-      let data = await this.axios.get('https://api.razor.network/jobs')
+      let data = await this.axios.get(url+'jobs')
       for (let i = 0; i < data.data.message.length; i++) {
         this.jobs.push({
           'url': data.data.message[i].url,
@@ -117,7 +118,7 @@ export default {
 
     },
     async initBigChart(jobId) {
-      let data = await this.axios.get('https://api.razor.network/job/' + jobId)
+      let data = await this.axios.get(url+'job/' + jobId)
       // console.log('d',data)
       // console.log('d',data.data)
       // console.log('length',Object.keys(data.data).length)
@@ -142,8 +143,8 @@ export default {
     },
     async initTables (jobId) {
       const [ stakers, transactions ] = await Promise.all([
-        this.axios.get('https://api.razor.network/votes/' + jobId).then(res => res.data),
-        this.axios.get('https://api.razor.network/voteEvents/' + jobId).then(res => res.data)
+        this.axios.get(url+'votes/' + jobId).then(res => res.data),
+        this.axios.get(url+'voteEvents/' + jobId).then(res => res.data)
       ])
 
       const totalStake = stakers.message.reduce((acc, message) => acc + Number(message.weight), 0)
@@ -181,7 +182,7 @@ export default {
     },
     async initCards() {
       // console.log('initing')
-      let data = await this.axios.get('https://api.razor.network/epoch')
+      let data = await this.axios.get(url+'epoch')
       // console.log(data.message)
       this.epoch = String(data.data.message)
     },

@@ -64,6 +64,8 @@
   import JobsTable from './Dashboard/JobsTable';
   import StakingTable from './Dashboard/StakingTable';
 
+  import { url } from '@/utils/commons'
+
   export default {
     components: {
       // LineChart,
@@ -142,7 +144,7 @@
 
         },
     //   async initBigChart(index) {
-    //     let data = await this.axios.get('https://api.razor.network/job/1')
+    //     let data = await this.axios.get(url+'job/1')
     //     // console.log('d',data)
     //     // console.log('d',data.data)
     //     // console.log('length',Object.keys(data.data).length)
@@ -168,7 +170,7 @@
     // },
     async initTables() {
         // console.log('initing')
-        // let data = await this.axios.get('https://api.razor.network/votes/1')
+        // let data = await this.axios.get(url+'votes/1')
         // // console.log(data.data)
         // let totalStake = 0
         // for(let i = 0; i < (data.data.message).length; i++) {
@@ -187,7 +189,7 @@
         // }
         // this.numStakers = String((data.data.message).length)
         // this.totalStake = String(totalStake)
-        let data2 = await this.axios.get('https://api.razor.network/voteEvents/')
+        let data2 = await this.axios.get(url+'voteEvents/')
         // console.log(data2.data.message)
         let age
         for(let i = (data2.data.message).length-1; i>=0; i--) {
@@ -203,7 +205,7 @@
     async initBlocksTable() {
         // <!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, medians: data.medians, jobIds: data.jobIds, timestamp: data.timestamp }) -->
         this.BlocksTable.tableData = []
-        let data2 = await this.axios.get('https://api.razor.network/blockEvents/')
+        let data2 = await this.axios.get(url+'blockEvents/')
         // console.log(data2.data.message)
 
         let age
@@ -213,6 +215,8 @@
                  staker: data2.data.message[i].staker,
                  action: data2.data.message[i].action,
                  medians: (data2.data.message[i].medians.join(",")),
+                 lowerCutoffs: (data2.data.message[i].lowerCutoffs.join(",")),
+                 higherCutoffs: (data2.data.message[i].higherCutoffs.join(",")),
                   jobIds: (data2.data.message[i].jobIds.join(",")),
                  iteration: (data2.data.message[i].iteration),
                   biggestStakerId: (data2.data.message[i].biggestStakerId),
@@ -222,7 +226,7 @@
     async initStakingTable() {
         // <!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, value: data.amount, timestamp: data.timestamp }) -->
         this.StakingTable.tableData = []
-        let data2 = await this.axios.get('https://api.razor.network/stakingEvents/')
+        let data2 = await this.axios.get(url+'stakingEvents/')
         // console.log(data2.data.message)
         let age
         let data
@@ -246,7 +250,7 @@
         //   creator: data.creator, credit: data.credit, timestamp: data.timestamp })
 
         this.JobsTable.tableData = []
-        let data2 = await this.axios.get('https://api.razor.network/jobEvents/')
+        let data2 = await this.axios.get(url+'jobEvents/')
         // console.log(data2.data.message)
         let age
         let data
@@ -269,7 +273,7 @@
     },
     async initCards() {
         // console.log('initing')
-        let data = await this.axios.get('https://api.razor.network/epoch')
+        let data = await this.axios.get(url+'epoch')
         // console.log(data.message)
         this.epoch = String(data.data.message)
 

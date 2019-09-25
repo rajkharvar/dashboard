@@ -155,6 +155,8 @@
 
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
   import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import { url } from '@/utils/commons'
+
 
   export default {
     components: {
@@ -207,7 +209,7 @@
     },
     methods: {
       async initBigChart() {
-        let data = await this.axios.get('https://api.razor.network/job/2')
+        let data = await this.axios.get(url+'job/2')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
@@ -234,7 +236,7 @@
     },
     async initTables() {
         // console.log('initing')
-        let data = await this.axios.get('https://api.razor.network/votes/2')
+        let data = await this.axios.get(url+'votes/2')
         // console.log(data.data)
         let totalStake = 0
         for(let i = 0; i < (data.data.message).length; i++) {
@@ -242,6 +244,7 @@
             // console.log('weight', Number(data.data.message[i].weight))
             totalStake+=Number(data.data.message[i].weight)
         }
+
         for(let i = 0; i < (data.data.message).length; i++) {
             this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
                 value: Number(data.data.message[i].value),
@@ -250,24 +253,23 @@
             // console.log('weight', Number(data.data.message[i].weight))
             // totalStake+=Number(data.data.message[i].weight)
         }
+
         this.numStakers = String((data.data.message).length)
         this.totalStake = String(totalStake)
-        let data2 = await this.axios.get('https://api.razor.network/voteEvents/2')
+        let data2 = await this.axios.get(url+'voteEvents/2')
         // console.log(data2.data.message)
         let age
-        for(let i = (data2.data.message).length-1; i>=0; i--) {
+        for (let i = (data2.data.message).length-1; i>=0; i--) {
             age = this.moment.unix(data2.data.message[i].timestamp).fromNow()
             this.PageVisitsTable.tableData.push({epoch: data2.data.message[i].epoch, staker: data2.data.message[i].staker, action: data2.data.message[i].action, value: (data2.data.message[i].value), timestamp: age})
         }
     },
     async initCards() {
         // console.log('initing')
-        let data = await this.axios.get('https://api.razor.network/epoch')
+        let data = await this.axios.get(url+'epoch')
         // console.log(data.message)
         this.epoch = String(data.data.message)
-
-
-    }
+      }
     },
     mounted() {
       this.initBigChart(0);
