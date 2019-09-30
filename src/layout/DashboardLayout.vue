@@ -19,7 +19,7 @@
         <sidebar-item :link="{name: 'Custom Query', icon: 'fas fa-search text-primary', path: '/query'}"/>
         <sidebar-item :link="{name: 'Faucet', icon: 'fas fa-shower text-primary', path: '/faucet'}"/>
         <sidebar-item :link="{name: 'Explore Transactions', icon: 'fas fa-chart-bar text-primary', path: '/stats'}"/>
-        <!-- <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> -->
+        <!-- <sidebar-item :link="{name: 'Staker', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> -->
 
       </template>
     </side-bar>
