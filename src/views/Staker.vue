@@ -196,8 +196,8 @@
     },
     methods: {
       async initBigChart() {
-        let data = await this.axios.get('http://localhost:3000/stakerEvents/'+this.address)
-        console.log(data.data.result[1])
+        let data = await this.axios.get('https://api.razor.network/stakerEvents/'+this.address)
+        // console.log(data.data.result[1])
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
@@ -219,33 +219,53 @@
           labels: labels,
         };
         this.bigLineChart.chartData = chartData;
-        // this.bigLineChart.activeIndex = index;
-    },
-    async initStakingTable() {
-        // <!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, value: data.amount, timestamp: data.timestamp }) -->
+        //table
         this.StakingTable.tableData = []
-        let data2 = await this.axios.get('http://localhost:3000/stakerEvents/'+this.address)
+        let data3 = data
         // console.log(data2.data.message)
         let age
-        let data
+        let _data
         let change
-        for(let i = (data2.data.result).length-1; i>=0; i--) {
-            age = this.moment.unix(data2.data.result[i].timestamp).fromNow()
-            data = data2.data.result[i]
-            change = data.newStake - data.previousStake
+        for(let i = (data3.data.result).length-1; i>=0; i--) {
+            age = this.moment.unix(data3.data.result[i].timestamp).fromNow()
+            _data = data3.data.result[i]
+            change = _data.newStake - _data.previousStake
             if(isNaN(change)) change = 0
             this.StakingTable.tableData.push({
-                epoch: data.epoch,
-                staker: data.staker,
-                action: data.action,
-                newStake: data.newStake,
+                epoch: _data.epoch,
+                staker: _data.staker,
+                action: _data.action,
+                newStake: _data.newStake,
                 change: change,
                timestamp: age})
         }
-    },
+        // this.bigLineChart.activeIndex = index;
+    }
+    // async initStakingTable() {
+    //     // <!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, value: data.amount, timestamp: data.timestamp }) -->
+    //     this.StakingTable.tableData = []
+    //     let data2 = await this.axios.get('https://api.razor.network/stakerEvents/'+this.address)
+    //     // console.log(data2.data.message)
+    //     let age
+    //     let data
+    //     let change
+    //     for(let i = (data2.data.result).length-1; i>=0; i--) {
+    //         age = this.moment.unix(data2.data.result[i].timestamp).fromNow()
+    //         data = data2.data.result[i]
+    //         change = data.newStake - data.previousStake
+    //         if(isNaN(change)) change = 0
+    //         this.StakingTable.tableData.push({
+    //             epoch: data.epoch,
+    //             staker: data.staker,
+    //             action: data.action,
+    //             newStake: data.newStake,
+    //             change: change,
+    //            timestamp: age})
+    //     }
+    // },
         // async initTables() {
         //     // console.log('initing')
-        //     let data = await this.axios.get('http://localhost:3000/votes/1')
+        //     let data = await this.axios.get('https://api.razor.network/votes/1')
         //     // console.log(data.data)
         //     let totalStake = 0
         //     for(let i = 0; i < (data.data.message).length; i++) {
@@ -264,7 +284,7 @@
         //     }
         //     this.numStakers = String((data.data.message).length)
         //     this.totalStake = String(totalStake)
-        //     let data2 = await this.axios.get('http://localhost:3000/voteEvents/1')
+        //     let data2 = await this.axios.get('https://api.razor.network/voteEvents/1')
         //     // console.log(data2.data.message)
         //     let age
         //     for(let i = (data2.data.message).length-1; i>=0; i--) {
@@ -274,7 +294,7 @@
         // },
     // async initCards() {
     //     // console.log('initing')
-    //     let data = await this.axios.get('http://localhost:3000/epoch')
+    //     let data = await this.axios.get('https://api.razor.network/epoch')
     //     // console.log(data.message)
     //     this.epoch = String(data.data.message)
     //
@@ -283,7 +303,7 @@
 },
     mounted() {
       this.initBigChart();
-      this.initStakingTable();
+      // this.initStakingTable();
       // this.initTables();
       // this.initCards();
      // this.bigLineChart.allData=[5,5,5]

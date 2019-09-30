@@ -202,7 +202,7 @@
     },
     methods: {
       async initBigChart(index) {
-        let data = await this.axios.get('http://localhost:3000/job/1')
+        let data = await this.axios.get('https://api.razor.network/job/1')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
@@ -228,7 +228,7 @@
     },
     async initTables() {
         // console.log('initing')
-        let data = await this.axios.get('http://localhost:3000/votes/1')
+        let data = await this.axios.get('https://api.razor.network/votes/1')
         // console.log(data.data)
         let totalStake = 0
         for(let i = 0; i < (data.data.message).length; i++) {
@@ -247,7 +247,7 @@
         }
         this.numStakers = String((data.data.message).length)
         this.totalStake = String(totalStake)
-        let data2 = await this.axios.get('http://localhost:3000/voteEvents/1')
+        let data2 = await this.axios.get('https://api.razor.network/voteEvents/1')
         // console.log(data2.data.message)
         let age
         for(let i = (data2.data.message).length-1; i>=0; i--) {
@@ -257,7 +257,7 @@
     },
     async initCards() {
         // console.log('initing')
-        let data = await this.axios.get('http://localhost:3000/epoch')
+        let data = await this.axios.get('https://api.razor.network/epoch')
         // console.log(data.message)
         this.epoch = String(data.data.message)
 
