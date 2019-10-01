@@ -197,7 +197,7 @@
     },
     methods: {
       async initBigChart() {
-        let data = await this.axios.get(url+'job/1')
+          let data = await this.axios.get(url+'stakerEvents/'+this.address)
 
         // console.log('d',data)
         // console.log('d',data.data)
