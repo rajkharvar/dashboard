@@ -22,12 +22,12 @@
         </template>
 
         <template slot-scope="{row}">
-          <th scope="row">
+          <td scope="row">
             <div class="jazz-box">
               <jazzicon :address=row.staker :diameter="30" />
-              <div>{{row.staker}}</div>
+              <div><router-link :to= "{name:'staker', params:{address : row.staker }}">{{row.staker}}</router-link></div>
             </div>
-          </th>
+        </td>
           <td  style=" vertical-align: middle;">
             {{row.value}}
           </td>

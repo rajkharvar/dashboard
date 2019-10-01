@@ -1,21 +1,24 @@
 <template>
     <div>
         <base-header style="backgroundColor:#40429b" class="pb-6 pb-8 pt-5 pt-md-8">
+        <!-- Staker: {{address}} -->
             <!-- Card stats -->
-            <!-- <div class="row"> -->
-                <!-- '<div>Staker {{ $route.params.address }}</div>' -->
-                <!--<div class="col-xl-3 col-lg-6">
-                    <stats-card title="Last Price"
+            <!-- <div class="row">
+                <div>Staker</div>
+            </div> -->
+                <div class="col-xl-7 col-lg-6">
+                    <stats-card title="Staker"
                                 type="gradient-red"
-                                :sub-title="lastDataPoint"
+                                :sub-title="address"
                                 icon="ni ni-atom"
                                 class="mb-4 mb-xl-0"
                     >
 
-
+ <!-- {{ $route.params.address }} -->
                     </stats-card>
                 </div>
-                <div class="col-xl-3 col-lg-6">
+
+                <!-- <div class="col-xl-3 col-lg-6">
                     <stats-card title="Total Stakers"
                                 type="gradient-orange"
                                 :sub-title="numStakers"
@@ -23,7 +26,8 @@
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
-                </div>
+                </div> -->
+                <!--
                 <div class="col-xl-3 col-lg-6">
                     <stats-card title="Total Stake"
                                 type="gradient-green"
@@ -123,7 +127,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-xl-12 mb-5 mb-xl-0">
-                    <!-- <page-visits-table :tableData="PageVisitsTable.tableData"></page-visits-table> -->
+                    <staking-table :tableData="StakingTable.tableData"></staking-table>
                 </div>
             </div>
 
@@ -136,6 +140,8 @@
   // Charts
   import * as chartConfigs from '@/components/Charts/config';
   import LineChart from '@/components/Charts/LineChart';
+  import StakingTable from './Dashboard/StakingTable';
+
   // import BarChart from '@/components/Charts/BarChart';
 
   // Tables
@@ -147,6 +153,7 @@
   export default {
     components: {
       LineChart,
+      StakingTable
       // BarChart,
       // PageVisitsTable,
       // SocialTrafficTable,
@@ -157,11 +164,12 @@
           numStakers:'',
           totalStake:'',
           epoch:'',
+          address: this.$route.params.address,
 
         SocialTrafficTable: {
             tableData: []
         },
-        PageVisitsTable: {
+        StakingTable: {
             tableData: []
         },
         bigLineChart: {
@@ -189,30 +197,77 @@
     },
     methods: {
       async initBigChart() {
+<<<<<<< HEAD
         let data = await this.axios.get(url+'job/1')
+=======
+        let data = await this.axios.get('https://api.razor.network/stakerEvents/'+this.address)
+        // console.log(data.data.result[1])
+>>>>>>> master
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
         let data2 = []
         let labels = []
-        for(let i = 0; i < Object.keys(data.data).length; i++) {
-            data2.push((data.data[i].value/100))
-            labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
+        for(let i = 0; i < Object.keys(data.data.result).length; i++) {
+            data2.push((data.data.result[i].newStake))
+            labels.push(this.moment.unix(Number(data.data.result[i].timestamp)).format('DD-MMM HH:mm'))
         }
         this.lastDataPoint = String(data2[data2.length-1])
         // console.log('d2',data2)
         let chartData = {
           datasets: [
             {
-              label: 'Price',
+              label: 'Stake',
               data: data2
             }
           ],
           labels: labels,
         };
         this.bigLineChart.chartData = chartData;
+        //table
+        this.StakingTable.tableData = []
+        let data3 = data
+        // console.log(data2.data.message)
+        let age
+        let _data
+        let change
+        for(let i = (data3.data.result).length-1; i>=0; i--) {
+            age = this.moment.unix(data3.data.result[i].timestamp).fromNow()
+            _data = data3.data.result[i]
+            change = _data.newStake - _data.previousStake
+            if(isNaN(change)) change = 0
+            this.StakingTable.tableData.push({
+                epoch: _data.epoch,
+                staker: _data.staker,
+                action: _data.action,
+                newStake: _data.newStake,
+                change: change,
+               timestamp: age})
+        }
         // this.bigLineChart.activeIndex = index;
-    },
+    }
+    // async initStakingTable() {
+    //     // <!-- res.push({epoch: data.epoch, staker: staker, action: events[i].event, value: data.amount, timestamp: data.timestamp }) -->
+    //     this.StakingTable.tableData = []
+    //     let data2 = await this.axios.get('https://api.razor.network/stakerEvents/'+this.address)
+    //     // console.log(data2.data.message)
+    //     let age
+    //     let data
+    //     let change
+    //     for(let i = (data2.data.result).length-1; i>=0; i--) {
+    //         age = this.moment.unix(data2.data.result[i].timestamp).fromNow()
+    //         data = data2.data.result[i]
+    //         change = data.newStake - data.previousStake
+    //         if(isNaN(change)) change = 0
+    //         this.StakingTable.tableData.push({
+    //             epoch: data.epoch,
+    //             staker: data.staker,
+    //             action: data.action,
+    //             newStake: data.newStake,
+    //             change: change,
+    //            timestamp: age})
+    //     }
+    // },
         // async initTables() {
         //     // console.log('initing')
         //     let data = await this.axios.get(url+'votes/1')
@@ -253,6 +308,7 @@
 },
     mounted() {
       this.initBigChart();
+      // this.initStakingTable();
       // this.initTables();
       // this.initCards();
      // this.bigLineChart.allData=[5,5,5]
