@@ -33,7 +33,9 @@
           <th>Age</th>
           <th>Action</th>
           <th>Medians</th>
-          <th>JobIds</th>
+          <th>lower Cutoffs</th>
+          <th>higher Cutoffs</th>
+          <th>Job Ids</th>
           <th>Iteration</th>
           <th>Biggest Staker Id</th>
         </template>
@@ -60,6 +62,12 @@
           </td>
           <td  style=" vertical-align: middle;">
             {{row.medians}}
+          </td>
+          <td  style=" vertical-align: middle;">
+            {{row.lowerCutoffs}}
+          </td>
+          <td  style=" vertical-align: middle;">
+            {{row.higherCutoffs}}
           </td>
           <td  style=" vertical-align: middle;">
             {{row.jobIds}}

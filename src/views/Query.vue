@@ -179,7 +179,7 @@
 </template>
 <script>
 
-import { createJob, get } from '@/utils/commons'
+import { createJob, get, url } from '@/utils/commons'
 
   // Charts
   // import * as chartConfigs from '@/components/Charts/config';
@@ -261,7 +261,7 @@ import { createJob, get } from '@/utils/commons'
           // this.refresh()
       },
       async initBigChart() {
-        let data = await this.axios.get('https://api.razor.network/job/1')
+        let data = await this.axios.get(url+'job/1')
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
