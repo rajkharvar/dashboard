@@ -57,11 +57,9 @@
           </td>
           <td  style=" vertical-align: middle;">
             <span class="text-success" v-if="row.change>0">+{{row.change}}</span>
-<<<<<<< HEAD
-            <span class="text-danger" v-if="row.change<0">{{row.change}}</span>
-=======
+
             <span class="text-danger" v-else>{{row.change}}</span>
->>>>>>> master
+
           </td>
           <td  style=" vertical-align: middle;">
             {{row.newStake}}

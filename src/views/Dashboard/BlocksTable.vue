@@ -35,6 +35,7 @@
           <th>Medians</th>
           <th>lower Cutoffs</th>
           <th>higher Cutoffs</th>
+          <th>Job Ids</th>
           <th>Iteration</th>
           <th>Biggest Staker Id</th>
         </template>

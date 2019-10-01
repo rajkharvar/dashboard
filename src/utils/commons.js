@@ -5,14 +5,14 @@ var _ = require('lodash/object')
 // import BN from 'bignumber.js'
 let web3
 let accounts
-let networkid = 420
+let networkid = 4
 
 // let error
 // let ethereum
 export const EventBus = new Vue()
 
 if (typeof window.ethereum === 'undefined'
-|| typeof window.web3 === 'undefined') {
+  || typeof window.web3 === 'undefined') {
   alert('Browser does not support ethereum. Consider installing metamask!')
 } else {
   // In the case the user has MetaMask installed, you can easily
@@ -52,7 +52,7 @@ export const faucet = async (address) => {
 
   // console.log(accounts)
   const res = await faucet.methods.faucet(address).send({
-    from: accounts[0] })
+  from: accounts[0]})
 
   return {
     // id,
@@ -78,7 +78,8 @@ export const get = async (data, selector) => {
   return _.get(data, selector)
 }
 
-export const url = 'http://localhost:3000/'
+// export const url = 'http://localhost:3000/'
+export const url = 'https://api.razor.network/'
 
 // export const getContractAddress = (assetId) => {
 //   return CDPFactory.methods.contracts(assetId).call()

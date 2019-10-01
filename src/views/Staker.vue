@@ -197,12 +197,8 @@
     },
     methods: {
       async initBigChart() {
-<<<<<<< HEAD
         let data = await this.axios.get(url+'job/1')
-=======
-        let data = await this.axios.get('https://api.razor.network/stakerEvents/'+this.address)
-        // console.log(data.data.result[1])
->>>>>>> master
+
         // console.log('d',data)
         // console.log('d',data.data)
         // console.log('length',Object.keys(data.data).length)
