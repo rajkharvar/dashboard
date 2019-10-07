@@ -179,7 +179,7 @@
 </template>
 <script>
 
-import { createJob, get, url } from '@/utils/commons'
+import { enableEth, createJob, get, url } from '@/utils/commons'
 
   // Charts
   // import * as chartConfigs from '@/components/Charts/config';
@@ -241,7 +241,8 @@ import { createJob, get, url } from '@/utils/commons'
     },
     methods: {
          async createJob () {
-          await createJob(this.url, this.selector, this.repeat, this.eth)
+          let res  = await enableEth()
+          if (res) await createJob(this.url, this.selector, this.repeat, this.eth)
           // this.refresh()
       },
          async testQuery () {
@@ -286,6 +287,7 @@ import { createJob, get, url } from '@/utils/commons'
       }
     },
     mounted() {
+
       this.initBigChart();
      // this.bigLineChart.allData=[5,5,5]
     }

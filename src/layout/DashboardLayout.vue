@@ -19,8 +19,29 @@
         <sidebar-item :link="{name: 'Custom Query', icon: 'fas fa-search text-primary', path: '/query'}"/>
         <sidebar-item :link="{name: 'Faucet', icon: 'fas fa-shower text-primary', path: '/faucet'}"/>
         <sidebar-item :link="{name: 'Explore Transactions', icon: 'fas fa-chart-bar text-primary', path: '/stats'}"/>
-        <!-- <sidebar-item :link="{name: 'Staker', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> -->
+        <!-- <sidebar-item :link="{name: 'Help', icon: 'fa fas-telegram', path: 'https://t.me/razornetwork'}"/> -->
+        <li class="nav-item">
+            <a
 
+                    class="nav-link"
+
+                    href="https://t.me/razornetwork">
+
+                    <i class="fab fa-telegram text-primary"></i>
+                    <span class="nav-link-text">Help</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a
+
+                    class="nav-link"
+
+                    href="https://razor.network">
+
+                    <i class="fas fa-globe text-primary"></i>
+                    <span class="nav-link-text">Back to Homepage</span>
+            </a>
+        </li>
       </template>
     </side-bar>
     <div class="main-content" :data="sidebarBackground">

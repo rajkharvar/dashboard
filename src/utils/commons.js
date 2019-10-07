@@ -11,18 +11,23 @@ let networkid = 4
 // let ethereum
 export const EventBus = new Vue()
 
-if (typeof window.ethereum === 'undefined'
-  || typeof window.web3 === 'undefined') {
-  alert('Browser does not support ethereum. Consider installing metamask!')
-} else {
-  // In the case the user has MetaMask installed, you can easily
-  // ask them to sign in and reveal their accounts:
-  ethereum.enable()
-  web3 = new Web3(window.web3.currentProvider)
+export const enableEth = async () => {
+  if (typeof window.ethereum === 'undefined'
+    || typeof window.web3 === 'undefined') {
+    alert('Browser does not support ethereum. Consider installing metamask!')
+    return false
+  } else {
+    // In the case the user has MetaMask installed, you can easily
+    // ask them to sign in and reveal their accounts:
+    await window.ethereum.enable()
+    web3 = new Web3(window.web3.currentProvider)
+    return true
+  }
 }
 // const _1e18 = new web3.utils.BN('1000000000000000000')
 export const createJob = async (url, selector, repeat, eth) => {
   let jobManagerBuild = require('../../build/contracts/JobManager.json')
+  // let delegatorBuild = require('../../build/contracts/Delegator.json')
 
   // let networkid = 4
   let jobManager = new web3.eth.Contract(jobManagerBuild['abi'], jobManagerBuild['networks'][networkid].address)
@@ -78,8 +83,8 @@ export const get = async (data, selector) => {
   return _.get(data, selector)
 }
 
-// export const url = 'http://localhost:3000/'
-export const url = 'https://api.razor.network/'
+export const url = 'http://localhost:3000/'
+// export const url = 'https://api.razor.network/'
 
 // export const getContractAddress = (assetId) => {
 //   return CDPFactory.methods.contracts(assetId).call()

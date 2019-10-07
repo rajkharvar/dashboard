@@ -16,7 +16,7 @@
         <stats-card title="Last Datapoint" type="gradient-red" :sub-title="lastDataPoint" icon="ni ni-atom" class="mb-4 mb-xl-0" />
       </div>
       <div class="col-xl-3 col-lg-6">
-        <stats-card title="Total Stakers" type="gradient-orange" :sub-title="numStakers" icon="ni ni-chart-pie-35" class="mb-4 mb-xl-0" />
+        <stats-card title="Job ID" type="gradient-orange" :sub-title="selected" icon="ni ni-chart-pie-35" class="mb-4 mb-xl-0" />
       </div>
       <div class="col-xl-3 col-lg-6">
         <stats-card title="Total Stake" type="gradient-green" :sub-title="totalStake" icon="ni ni-money-coins" class="mb-4 mb-xl-0" />
