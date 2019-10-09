@@ -83,8 +83,8 @@ export const get = async (data, selector) => {
   return _.get(data, selector)
 }
 
-export const url = 'http://localhost:3000/'
-// export const url = 'https://api.razor.network/'
+// export const url = 'http://localhost:3000/'
+export const url = 'https://api.razor.network/'
 
 // export const getContractAddress = (assetId) => {
 //   return CDPFactory.methods.contracts(assetId).call()
