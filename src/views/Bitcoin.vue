@@ -254,6 +254,8 @@
             // console.log('weight', Number(data.data.message[i].weight))
             // totalStake+=Number(data.data.message[i].weight)
         }
+        // sorting by stake
+        this.SocialTrafficTable.tableData.sort((a, b) => b.stake - a.stake)
 
         this.numStakers = String((data.data.message).length)
         // this.totalStake = String(totalStake)

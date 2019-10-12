@@ -246,6 +246,8 @@
             // console.log('weight', Number(data.data.message[i].weight))
             // totalStake+=Number(data.data.message[i].weight)
         }
+        // sorting by stake
+        this.SocialTrafficTable.tableData.sort((a, b) => b.stake - a.stake)
         this.numStakers = String((data.data.message).length)
         this.totalStake = Math.round(Number(totalStake/1e16))/100
         let data2 = await this.axios.get(url+'voteEvents/1')
