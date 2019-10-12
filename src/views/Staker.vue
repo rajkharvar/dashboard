@@ -205,7 +205,7 @@
         let data2 = []
         let labels = []
         for(let i = 0; i < Object.keys(data.data.result).length; i++) {
-            data2.push((data.data.result[i].newStake))
+            data2.push(Math.round(data.data.result[i].newStake/1e16)/100)
             labels.push(this.moment.unix(Number(data.data.result[i].timestamp)).format('DD-MMM HH:mm'))
         }
         this.lastDataPoint = String(data2[data2.length-1])
@@ -236,8 +236,8 @@
                 epoch: _data.epoch,
                 staker: _data.staker,
                 action: _data.action,
-                newStake: _data.newStake,
-                change: change,
+                newStake: Math.round(_data.newStake/1e16)/100,
+                change: Math.round(change/1e16)/100,
                timestamp: age})
         }
         // this.bigLineChart.activeIndex = index;

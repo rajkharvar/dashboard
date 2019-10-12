@@ -240,8 +240,8 @@
                 epoch: data.epoch,
                 staker: data.staker,
                 action: data.action,
-                newStake: data.newStake,
-                change: change,
+                newStake: Math.round(data.newStake/1e16)/100,
+                change: Math.round(change/1e16)/100,
                timestamp: age})
         }
     },

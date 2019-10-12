@@ -147,21 +147,23 @@ export default {
         this.axios.get(url+'voteEvents/' + jobId).then(res => res.data)
       ])
 
-      const totalStake = stakers.message.reduce((acc, message) => acc + Number(message.weight), 0)
+      let totalStake = stakers.message.reduce((acc, message) => acc + Number(message.weight), 0)
+      this.totalStake = Math.round(Number(totalStake/1e16))/100
+
       const _stakers = []
 
       for (let i = 0; i < stakers.message.length; i++) {
         _stakers.push({
           staker: stakers.message[i].staker,
           value: Number(stakers.message[i].value),
-          stake: Number(stakers.message[i].weight),
+          stake: Math.round(Number(stakers.message[i].weight)/1e16)/100,
           weight: Math.round(Number(stakers.message[i].weight) * 10000 / totalStake) / 100
         })
       }
 
       this.stakers = _stakers
       this.numStakers = String(stakers.message.length)
-      this.totalStake = String(totalStake)
+      // this.totalStake = String(totalStake)
 
       const _transactions = []
 
