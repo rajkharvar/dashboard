@@ -40,6 +40,7 @@ export const createJob = async (url, selector, repeat, eth) => {
     from: accounts[0],
     value: eth
   })
+  console.log(res)
 
   return {
     // id,
@@ -66,15 +67,15 @@ export const faucet = async (address) => {
 }
 
 export const getSchBalance = async (address) => {
-  let simpleTokenBuild = require('../../build/contracts/SimpleToken.json')
+  let schellingCoinBuild = require('../../build/contracts/SchellingCoin.json')
 
-  let simpleToken = new web3.eth.Contract(simpleTokenBuild['abi'], simpleTokenBuild['networks'][networkid].address)
+  let schellingCoin = new web3.eth.Contract(schellingCoinBuild['abi'], schellingCoinBuild['networks'][networkid].address)
 
   // const accounts = await web3.eth.getAccounts()
   accounts = await ethereum.enable()
 
   // console.log(accounts)
-  const res = await simpleToken.methods.balanceOf(address).call()
+  const res = await schellingCoin.methods.balanceOf(address).call()
 
   return res
 }

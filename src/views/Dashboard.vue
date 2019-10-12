@@ -241,13 +241,13 @@
         for(let i = 0; i < (data.data.message).length; i++) {
             this.SocialTrafficTable.tableData.push({staker: data.data.message[i].staker,
                 value: Number(data.data.message[i].value),
-                stake: Number(data.data.message[i].weight),
+                stake: Math.round(Number(data.data.message[i].weight)/1e16)/100,
                 weight: Math.round(Number(data.data.message[i].weight) * 10000 / totalStake) / 100})
             // console.log('weight', Number(data.data.message[i].weight))
             // totalStake+=Number(data.data.message[i].weight)
         }
         this.numStakers = String((data.data.message).length)
-        this.totalStake = String(totalStake)
+        this.totalStake = Math.round(Number(totalStake/1e16))/100
         let data2 = await this.axios.get(url+'voteEvents/1')
         // console.log(data2.data.message)
         let age

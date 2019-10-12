@@ -34,7 +34,7 @@
           <th>Age</th>
           <th>Action</th>
           <th>Change</th>
-          <th>New Stake</th>
+          <th>New Value</th>
           <!-- <th>Credit</th> -->
         </template>
 
@@ -45,7 +45,7 @@
 
           <td scope="row">
             <div class="jazz-box">
-              <jazzicon :address=row.staker :diameter="30" />
+              <jazzicon v-if="row.staker" :address=row.staker :diameter="30" />
               <div><router-link :to= "{name:'staker', params:{address : row.staker }}">{{row.staker}}</router-link></div>
             </div>
           </td>

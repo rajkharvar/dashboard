@@ -179,7 +179,7 @@
 </template>
 <script>
 
-import { enableEth, createJob, get, url } from '@/utils/commons'
+import { enableEth, createJob, get } from '@/utils/commons'
 
   // Charts
   // import * as chartConfigs from '@/components/Charts/config';
@@ -260,35 +260,35 @@ import { enableEth, createJob, get, url } from '@/utils/commons'
          }
 
           // this.refresh()
-      },
-      async initBigChart() {
-        let data = await this.axios.get(url+'job/1')
-        // console.log('d',data)
-        // console.log('d',data.data)
-        // console.log('length',Object.keys(data.data).length)
-        let data2 = []
-        let labels = []
-        for(let i = 0; i < Object.keys(data.data).length; i++) {
-            data2.push((data.data[i].value/100))
-            labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
-        }
-        // console.log('d2',data2)
-        let chartData = {
-          datasets: [
-            {
-              label: 'Price',
-              data: data2
-            }
-          ],
-          labels: labels,
-        };
-        this.bigLineChart.chartData = chartData;
-        // this.bigLineChart.activeIndex = index;
       }
+      // async initBigChart() {
+      //   let data = await this.axios.get(url+'job/1')
+      //   // console.log('d',data)
+      //   // console.log('d',data.data)
+      //   // console.log('length',Object.keys(data.data).length)
+      //   let data2 = []
+      //   let labels = []
+      //   for(let i = 0; i < Object.keys(data.data).length; i++) {
+      //       data2.push((data.data[i].value/100))
+      //       labels.push(this.moment.unix(Number(data.data[i].timestamp)).format('DD-MMM HH:mm'))
+      //   }
+      //   // console.log('d2',data2)
+      //   let chartData = {
+      //     datasets: [
+      //       {
+      //         label: 'Price',
+      //         data: data2
+      //       }
+      //     ],
+      //     labels: labels,
+      //   };
+      //   this.bigLineChart.chartData = chartData;
+      //   // this.bigLineChart.activeIndex = index;
+      // }
     },
     mounted() {
 
-      this.initBigChart();
+      // this.initBigChart();
      // this.bigLineChart.allData=[5,5,5]
     }
   };
