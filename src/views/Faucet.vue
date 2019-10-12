@@ -171,7 +171,7 @@
 </template>
 <script>
 
-import { faucet, getSchBalance } from '@/utils/commons'
+import { enableEth, faucet, getSchBalance } from '@/utils/commons'
 
   // Charts
   // import * as chartConfigs from '@/components/Charts/config';
@@ -211,12 +211,15 @@ import { faucet, getSchBalance } from '@/utils/commons'
     },
     methods: {
          async submit () {
-          await faucet(this.address)
+             let res  = await enableEth()
+             if (res) await faucet(this.address)
           // this.refresh()
       }, async getBalance() {
+          let res  = await enableEth()
+
           this.balanceText = ''
           this.balance = await getSchBalance(this.address)
-          this.balanceText = "Your SCH balance:" + String(this.balance)
+          this.balanceText = "Your SCH balance:" + String(Math.round(this.balance/1e16)/100)
       }
     },
     mounted() {
