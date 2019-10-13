@@ -12,6 +12,10 @@
                                 :sub-title="address"
                                 icon="ni ni-atom"
                                 class="mb-4 mb-xl-0"
+                                ethTitle="ETH"
+                                schTitle="SCH"
+                                :ethAmount="ethBalance"
+                                :schAmount="schBalance"
                     >
 
  <!-- {{ $route.params.address }} -->
@@ -165,7 +169,9 @@
           totalStake:'',
           epoch:'',
           address: this.$route.params.address,
-
+          ethBalance: 0,
+          schBalance: 0,
+          
         SocialTrafficTable: {
             tableData: []
         },
@@ -196,6 +202,12 @@
       };
     },
     methods: {
+      async getBalance() {
+          let data = await this.axios.get(url + 'getEthbalance/'+this.address)
+          let data1 = await this.axios.get(url + 'getSchbalance/'+this.address)
+          this.ethBalance = Math.round(Number(data.data.message)/1e16)/100
+          this.schBalance = Math.round(Number(data1.data.message)/1e16)/100
+    },
       async initBigChart() {
           let data = await this.axios.get(url+'stakerEvents/'+this.address)
 
@@ -303,6 +315,7 @@
     // }
 },
     mounted() {
+      this.getBalance();
       this.initBigChart();
       // this.initStakingTable();
       // this.initTables();
