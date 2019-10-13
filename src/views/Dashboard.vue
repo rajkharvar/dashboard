@@ -34,7 +34,7 @@
                 <div class="col-xl-3 col-lg-6">
                     <stats-card title="Total Stake"
                                 type="gradient-green"
-                                :sub-title="totalStake"
+                                :sub-title="String(totalStake)"
                                 icon="ni ni-money-coins"
                                 class="mb-4 mb-xl-0"
                     >
