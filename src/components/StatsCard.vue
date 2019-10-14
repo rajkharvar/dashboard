@@ -18,22 +18,6 @@
         </slot>
       </div>
     </div>
-    <!-- ETH and SCH Balance -->
-    <div class="row">
-      <div class="col">
-        <slot>
-          <h5 class="card-title test-uppercase text-muted mb-0" v-if="ethTitle">{{ ethTitle }}</h5>
-          <span class="h2 font-weight-bold mb-0">{{ ethAmount }}</span>
-        </slot>
-      </div>
-
-      <div class="col">
-        <slot>
-          <h5 class="card-title test-uppercase text-muted mb-0" v-if="schTitle">{{ schTitle }}</h5>
-          <span class="h2 font-weight-bold mb-0" >{{ schAmount }}</span>
-        </slot>
-      </div>
-    </div>
     <p class="mt-3 mb-0 text-sm">
       <slot name="footer">
 
@@ -58,10 +42,6 @@
       title: String,
       subTitle: String,
       iconClasses: [String, Array],
-      ethTitle: String,
-      schTitle: String,
-      ethAmount: Number,
-      schAmount: Number
     }
   };
 </script>
