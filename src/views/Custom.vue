@@ -160,7 +160,8 @@ export default {
           weight: Math.round(Number(stakers.message[i].weight) * 10000 / totalStake) / 100
         })
       }
-
+      // sorting by stake and filter whose stake value is 0 
+      _stakers.sort((a, b) => b.stake - a.stake).splice(_stakers.findIndex(item => item.stake === 0), _stakers.length)
       this.stakers = _stakers
       this.numStakers = String(stakers.message.length)
       // this.totalStake = String(totalStake)
